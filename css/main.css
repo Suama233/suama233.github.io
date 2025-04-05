@@ -7,16 +7,16 @@
 
 :root {
   --red-0: #9901ff;
-  --red-1: #dc52ff;
-  --red-2: #ff7cf8;
-  --red-3: #ffaffb;
+  --red-1: #a664d5;
+  --red-2: #a984e5;
+  --red-3: #352183;
   --red-4: #fdd0ff;
   --red-5: #ffecfd;
   --red-5-5: #fef3ff;
   --red-6: #fef7ff;
   --grey-9: #888;
   --grey-7: var(--color-default);
-  --color-archive-year: black;
+  --color-archive-year: rgb(0, 0, 0);
   --color-default: #555;
   --color-border: var(--red-3);
   --color-link: var(--red-1);
@@ -31,8 +31,8 @@
   --color-meta-shadow: var(--red-6);
   --color-hover-shadow: rgba(120, 120, 120, 0.15);
   --color-h2-after: var(--red-1);
-  --color-red-6-shadow: rgba(211, 78, 255, 0.6);
-  --color-red-3-shadow: rgba(223, 78, 255, 0.3);
+  --color-red-6-shadow: rgba(122, 36, 150, 0.6);
+  --color-red-3-shadow: rgba(181, 61, 208, 0.3);
   --highlight-nav: #e6e6e6;
   --highlight-scrollbar: #d6d6d6;
   --highlight-background: #f7f7f7;
@@ -59,22 +59,22 @@
   --red-5-5: rgba(249, 236, 255, 0.05);
   --red-6: rgba(253, 243, 255, 0.2);
   --color-archive-year: #999;
-  --color-default: #999;
+  --color-default: #777777;
   --color-border: var(--red-5);
-  --color-background: #21252b;
+  --color-background: #0a0b0e;
   --color-code-background: rgba(232, 232, 232, 0.1);
-  --color-header-background: #222222;
+  --color-header-background: #161616;
   --color-footer-background: #21252b;
   --color-mobile-nav-background: #21252b;
-  --color-wrap: #272b30;
+  --color-wrap: #080e12;
   --color-h2-border: #47474a;
   --color-meta-shadow: rgba(0, 0, 0, 0.2);
   --color-hover-shadow: rgba(0, 0, 0, 0.2);
-  --highlight-nav: #2e353f;
+  --highlight-nav: #1c2025;
   --highlight-scrollbar: #454d59;
-  --highlight-background: #22272e;
+  --highlight-background: #060112;
   --highlight-current-line: #393939;
-  --highlight-selection: #515151;
+  --highlight-selection: #2d2d35;
   --highlight-foreground: #cccccc;
   --highlight-comment: #999999;
   --highlight-red: #f47067;
@@ -87,7 +87,7 @@
 }
 
 [data-theme="dark"] img {
-  filter: brightness(70%);
+  filter: brightness(60%);
 }
 
 [data-theme="dark"] .pswp__img {
@@ -147,6 +147,35 @@ body [data-aos="zoom-in"] {
 /* 隐藏主题切换按钮 */
 .dark-mode-btn {
   display: none !important;
+}
+
+/* 默认使用暗色加载器 */
+#loader .loading-bg {
+  background-color: rgba(13, 12, 14, 0.9) !important;
+}
+
+#loader .spinner-box .loading-word {
+  color: var(--red-1, #a664d5) !important;
+}
+
+/* 设置默认暗色主题 */
+:root {
+  --color-background: #0a0b0e;
+  --color-wrap: #080e12;
+  --color-header-background: #161616;
+  --color-footer-background: #21252b;
+}
+
+body {
+  background-color: var(--color-background);
+}
+
+/* 自定义 Waline 评论框样式 */
+.wl-panel {
+  background-color: var(--color-wrap) !important;
+  /* 使用主题变量 */
+  /* 或者使用特定颜色，例如: */
+  /* background-color: #f0f0f0 !important; */
 }
 
 @font-face {
