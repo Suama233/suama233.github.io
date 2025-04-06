@@ -40,7 +40,7 @@
 
 
 <script>
-  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"clipboard\":{\"copyright\":{\"content\":\"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\",\"count\":50,\"enable\":false},\"fail\":\"复制失败\",\"success\":\"复制成功\"},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":\"本文最后更新于 {time}，请注意文中内容可能已经发生变化。\"}}");
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"clipboard\":{\"copyright\":{\"content\":\"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\",\"count\":50,\"enable\":false},\"fail\":\"复制失败\",\"success\":\"复制成功\"},\"code_block\":{\"expand\":true},\"icon_font\":false,\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":\"本文最后更新于 {time}，请注意文中内容可能已经发生变化。\"}}");
 </script>
 
 
@@ -82,13 +82,39 @@
 
 
 
+  
+
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css" />
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css" />
+
+
+  
+
+
   <link
     rel="preload"
-    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin="anonymous"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
   />
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+
 
 
 
@@ -120,7 +146,7 @@
 
 
   
- <link rel="stylesheet" href="/css/main.min.9403157ef5158ffebe0d33e9fdac88939b6b107507892642ce0ebcd8bfb555cb.css" />
+ <link rel="stylesheet" href="/css/main.min.25f285bba85c61eb88844a791251ec2b70428b5e4a5d95ceb72017e6dc6d6a1e.css" />
 
 
 
@@ -204,11 +230,7 @@
     <div class="spinner-box">
       <div class="loading-taichi">
         
-          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
-            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
-            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
-          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
-          </svg>
+          <img src="/images/taichi.png" alt="loading" />
         
       </div>
       <div class="loading-word">Loading...</div>
@@ -252,44 +274,36 @@
   <nav id="main-nav">
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xf121;
           
         </div>
         <a class="main-nav-link" href="/">ホーム</a>
       </span>
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xf07b;
           
         </div>
         <a class="main-nav-link" href="/archives">アーカイブ</a>
       </span>
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xf0f4;
           
         </div>
         <a class="main-nav-link" href="/about">プロフィール</a>
       </span>
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xe4e2;
           
         </div>
         <a class="main-nav-link" href="/friend">フレンド</a>
@@ -416,11 +430,9 @@
         href="/"
         aria-label="ホーム"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf121;
         
       </div>
       <div class="sidebar-menu-link">ホーム</div>
@@ -432,11 +444,9 @@
         href="/archives"
         aria-label="アーカイブ"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf07b;
         
       </div>
       <div class="sidebar-menu-link">アーカイブ</div>
@@ -448,11 +458,9 @@
         href="/about"
         aria-label="プロフィール"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf0f4;
         
       </div>
       <div class="sidebar-menu-link">プロフィール</div>
@@ -464,11 +472,9 @@
         href="/friend"
         aria-label="フレンド"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xe4e2;
         
       </div>
       <div class="sidebar-menu-link">フレンド</div>
@@ -685,11 +691,9 @@
         href="/"
         aria-label="ホーム"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf121;
         
       </div>
       <div class="sidebar-menu-link">ホーム</div>
@@ -701,11 +705,9 @@
         href="/archives"
         aria-label="アーカイブ"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf07b;
         
       </div>
       <div class="sidebar-menu-link">アーカイブ</div>
@@ -717,11 +719,9 @@
         href="/about"
         aria-label="プロフィール"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf0f4;
         
       </div>
       <div class="sidebar-menu-link">プロフィール</div>
@@ -733,11 +733,9 @@
         href="/friend"
         aria-label="フレンド"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xe4e2;
         
       </div>
       <div class="sidebar-menu-link">フレンド</div>
