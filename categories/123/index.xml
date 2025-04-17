@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>123 on きこえるの？</title>
+    <link>http://localhost:1313/categories/123/</link>
+    <description>Recent content in 123 on きこえるの？</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 09 Jun 2022 20:12:52 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/123/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习随笔C&#43;&#43;智能指针</title>
+      <link>http://localhost:1313/post/main---%E5%89%AF%E6%9C%AC/</link>
+      <pubDate>Tue, 15 Apr 2025 20:41:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/main---%E5%89%AF%E6%9C%AC/</guid>
+      <description>&lt;h1 id=&#34;三种智能指针&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%b8%89%e7%a7%8d%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88&#34;&gt;&lt;/a&gt;&#xD;&#xA;三种智能指针&#xD;&#xA;&lt;/h1&gt;&lt;h1 id=&#34;unique_ptr的使用&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#unique_ptr%e7%9a%84%e4%bd%bf%e7%94%a8&#34;&gt;&lt;/a&gt;&#xD;&#xA;&lt;code&gt;unique_ptr&amp;lt;&amp;gt;&lt;/code&gt;的使用&#xD;&#xA;&lt;/h1&gt;&lt;h1 id=&#34;对比裸指针与智能指针&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%af%b9%e6%af%94%e8%a3%b8%e6%8c%87%e9%92%88%e4%b8%8e%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88&#34;&gt;&lt;/a&gt;&#xD;&#xA;对比：裸指针与智能指针&#xD;&#xA;&lt;/h1&gt;&lt;h1 id=&#34;背景&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e8%83%8c%e6%99%af&#34;&gt;&lt;/a&gt;&#xD;&#xA;背景：&#xD;&#xA;&lt;/h1&gt;&lt;h1 id=&#34;拓展rall&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%8b%93%e5%b1%95rall&#34;&gt;&lt;/a&gt;&#xD;&#xA;拓展：RAll&#xD;&#xA;&lt;/h1&gt;</description>
+    </item>
+  </channel>
+</rss>

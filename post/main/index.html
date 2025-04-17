@@ -39,7 +39,7 @@
 
 
 <script>
-  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"clipboard\":{\"copyright\":{\"content\":\"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\",\"count\":50,\"enable\":false},\"fail\":\"复制失败\",\"success\":\"复制成功\"},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":\"本文最后更新于 {time}，请注意文中内容可能已经发生变化。\"}}");
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"clipboard\":{\"copyright\":{\"content\":\"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\",\"count\":50,\"enable\":false},\"fail\":\"复制失败\",\"success\":\"复制成功\"},\"code_block\":{\"expand\":true},\"icon_font\":false,\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":\"本文最后更新于 {time}，请注意文中内容可能已经发生变化。\"}}");
 </script>
 
 
@@ -81,13 +81,39 @@
 
 
 
+  
+
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css" />
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css" />
+
+
+  
+
+
   <link
     rel="preload"
-    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin="anonymous"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
   />
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+
 
 
 
@@ -188,18 +214,6 @@
 
 
     
-      <style>
-  .loader img {
-    -webkit-mask-image: url('/images/taichi.png');
-    mask-image: url('/images/taichi.png');
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    background-color: currentColor;
-    width: 150px;
-    height: 150px;
-  }
-</style>
-    
   </head>
   <body>
     
@@ -254,44 +268,36 @@
   <nav id="main-nav">
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xf121;
           
         </div>
         <a class="main-nav-link" href="/">首页</a>
       </span>
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xf07b;
           
         </div>
         <a class="main-nav-link" href="/archives">归档</a>
       </span>
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xf0f4;
           
         </div>
         <a class="main-nav-link" href="/about">关于</a>
       </span>
     
       <span class="main-nav-link-wrap">
-        <div class='main-nav-icon icon rotate'>
+        <div class='main-nav-icon icon '>
           
-            
-              &#xe62b;
-            
+            &#xe4e2;
           
         </div>
         <a class="main-nav-link" href="/friend">友链</a>
@@ -400,17 +406,17 @@
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
     <div class="sidebar-state-number">
-      1
+      2
     </div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -444,11 +450,9 @@
         href="/"
         aria-label="首页"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf121;
         
       </div>
       <div class="sidebar-menu-link">首页</div>
@@ -460,11 +464,9 @@
         href="/archives"
         aria-label="归档"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf07b;
         
       </div>
       <div class="sidebar-menu-link">归档</div>
@@ -476,11 +478,9 @@
         href="/about"
         aria-label="关于"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf0f4;
         
       </div>
       <div class="sidebar-menu-link">关于</div>
@@ -492,11 +492,9 @@
         href="/friend"
         aria-label="友链"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xe4e2;
         
       </div>
       <div class="sidebar-menu-link">友链</div>
@@ -1311,6 +1309,9 @@ $$
   
   
 
+  
+  
+
 
 
 <footer id="footer">
@@ -1344,7 +1345,7 @@ $$
       <div>
         <span class="icon-brush"
           >&nbsp;
-            1.7k
+            4.2k
           </span
         >
         &nbsp;|&nbsp;
@@ -1352,7 +1353,7 @@ $$
           
           
 
-          00:05
+          00:11
         </span>
       </div>
     
@@ -1425,17 +1426,17 @@ $$
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
     <div class="sidebar-state-number">
-      1
+      2
     </div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -1469,11 +1470,9 @@ $$
         href="/"
         aria-label="首页"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf121;
         
       </div>
       <div class="sidebar-menu-link">首页</div>
@@ -1485,11 +1484,9 @@ $$
         href="/archives"
         aria-label="归档"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf07b;
         
       </div>
       <div class="sidebar-menu-link">归档</div>
@@ -1501,11 +1498,9 @@ $$
         href="/about"
         aria-label="关于"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xf0f4;
         
       </div>
       <div class="sidebar-menu-link">关于</div>
@@ -1517,11 +1512,9 @@ $$
         href="/friend"
         aria-label="友链"
       ></a>
-      <div class='sidebar-menu-icon icon rotate'>
+      <div class='sidebar-menu-icon icon '>
         
-          
-            &#xe62b;
-          
+          &#xe4e2;
         
       </div>
       <div class="sidebar-menu-link">友链</div>
