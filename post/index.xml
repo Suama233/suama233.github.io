@@ -2,31 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>きこえるの？</title>
-    <link>https://suama.github.io/post/</link>
+    <link>http://localhost:1313/post/</link>
     <description>Recent content on きこえるの？</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 15 Mar 2023 11:00:00 -0700</lastBuildDate>
-    <atom:link href="https://suama.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Apr 2025 02:26:52 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Markdown Basic Elements</title>
-      <link>https://suama.github.io/post/main---%E5%89%AF%E6%9C%AC/</link>
-      <pubDate>Tue, 15 Apr 2025 20:41:52 +0800</pubDate>
-      <guid>https://suama.github.io/post/main---%E5%89%AF%E6%9C%AC/</guid>
-      <description></description>
+      <title>[学习随笔] C&#43;&#43;智能指针</title>
+      <link>http://localhost:1313/post/smart_ptr/</link>
+      <pubDate>Thu, 17 Apr 2025 20:41:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/smart_ptr/</guid>
+      <description>&lt;h2 id=&#34;三种智能指针&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%b8%89%e7%a7%8d%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88&#34;&gt;&lt;/a&gt;&#xD;&#xA;三种智能指针&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;概述是什么及其参与的生态位&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%a6%82%e8%bf%b0%e6%98%af%e4%bb%80%e4%b9%88%e5%8f%8a%e5%85%b6%e5%8f%82%e4%b8%8e%e7%9a%84%e7%94%9f%e6%80%81%e4%bd%8d&#34;&gt;&lt;/a&gt;&#xD;&#xA;概述：是什么，及其参与的生态位&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;C++ 11&lt;/strong&gt;后，标准库（std）中新加入了四种指针：&lt;code&gt;unique_ptr&lt;/code&gt;,&lt;code&gt;shared_ptr&lt;/code&gt;,&lt;code&gt;weak_ptr&lt;/code&gt;,&lt;code&gt;auto_ptr&lt;/code&gt;(最后一种在C++17&#xA;后被废弃因而本文不做任何涉及)。它们对应的传统位置是C++的裸指针（和前者相比，纯粹的一个&lt;code&gt;T* ptr&lt;/code&gt;没有被封装，故得名）。它们的创建与删除操作对应了裸指针的&lt;code&gt;new&lt;/code&gt;,&lt;code&gt;delete&lt;/code&gt;操作。也就是说，它的核心任务是在堆上人为分配资源，但同时利用了栈与作用域的特性，实现了&lt;strong&gt;更安全&lt;/strong&gt;的资源分配。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello World</title>
-      <link>https://suama.github.io/post/hello/</link>
+      <link>http://localhost:1313/post/hello/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
-      <guid>https://suama.github.io/post/hello/</guid>
+      <guid>http://localhost:1313/post/hello/</guid>
       <description>&lt;p&gt;ここにいるよ、わたしたち。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Markdown Basic Elements</title>
-      <link>https://suama.github.io/post/main/</link>
+      <link>http://localhost:1313/post/gaussian-like_integral/</link>
       <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>https://suama.github.io/post/main/</guid>
+      <guid>http://localhost:1313/post/gaussian-like_integral/</guid>
+      <description>&lt;h2 id=&#34;markdown-基本元素&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#markdown-%e5%9f%ba%e6%9c%ac%e5%85%83%e7%b4%a0&#34;&gt;&lt;/a&gt;&#xD;&#xA;Markdown 基本元素&#xD;&#xA;&lt;/h2&gt;</description>
+    </item>
+    <item>
+      <title>Markdown Basic Elements</title>
+      <link>http://localhost:1313/post/main/</link>
+      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/main/</guid>
       <description>&lt;h2 id=&#34;markdown-基本元素&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#markdown-%e5%9f%ba%e6%9c%ac%e5%85%83%e7%b4%a0&#34;&gt;&lt;/a&gt;&#xD;&#xA;Markdown 基本元素&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;标题&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%a0%87%e9%a2%98&#34;&gt;&lt;/a&gt;&#xD;&#xA;标题&#xD;&#xA;&lt;/h3&gt;&lt;h1 id=&#34;h1&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h1&#34;&gt;&lt;/a&gt;&#xD;&#xA;H1&#xD;&#xA;&lt;/h1&gt;&lt;h2 id=&#34;h2&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h2&#34;&gt;&lt;/a&gt;&#xD;&#xA;H2&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;h3&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h3&#34;&gt;&lt;/a&gt;&#xD;&#xA;H3&#xD;&#xA;&lt;/h3&gt;&lt;h4 id=&#34;h4&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h4&#34;&gt;&lt;/a&gt;&#xD;&#xA;H4&#xD;&#xA;&lt;/h4&gt;&lt;h5 id=&#34;h5&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h5&#34;&gt;&lt;/a&gt;&#xD;&#xA;H5&#xD;&#xA;&lt;/h5&gt;&lt;h6 id=&#34;h6&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h6&#34;&gt;&lt;/a&gt;&#xD;&#xA;H6&#xD;&#xA;&lt;/h6&gt;&lt;h3 id=&#34;强调&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%bc%ba%e8%b0%83&#34;&gt;&lt;/a&gt;&#xD;&#xA;强调&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;Emphasis, aka italics, with &lt;em&gt;asterisks&lt;/em&gt; or &lt;em&gt;underscores&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Strong emphasis, aka bold, with &lt;strong&gt;asterisks&lt;/strong&gt; or &lt;strong&gt;underscores&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Combined emphasis with &lt;strong&gt;asterisks and &lt;em&gt;underscores&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Strikethrough uses two tildes. &lt;del&gt;Scratch this.&lt;/del&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;列表&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%88%97%e8%a1%a8&#34;&gt;&lt;/a&gt;&#xD;&#xA;列表&#xD;&#xA;&lt;/h3&gt;&lt;h4 id=&#34;definition-list-dl&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#definition-list-dl&#34;&gt;&lt;/a&gt;&#xD;&#xA;Definition List (dl)&#xD;&#xA;&lt;/h4&gt;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;h4 id=&#34;ordered-list-ol&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#ordered-list-ol&#34;&gt;&lt;/a&gt;&#xD;&#xA;Ordered List (ol)&#xD;&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;List Item 1&lt;/li&gt;&#xA;&lt;li&gt;List Item 2&lt;/li&gt;&#xA;&lt;li&gt;List Item 3&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;unordered-list-ul&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#unordered-list-ul&#34;&gt;&lt;/a&gt;&#xD;&#xA;Unordered List (ul)&#xD;&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;List Item 1&lt;/li&gt;&#xA;&lt;li&gt;List Item 2&lt;/li&gt;&#xA;&lt;li&gt;List Item 3&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;段落&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%ae%b5%e8%90%bd&#34;&gt;&lt;/a&gt;&#xD;&#xA;段落&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;a href=&#34;&#34;&gt;test link&lt;/a&gt; consectetur adipiscing elit. &lt;strong&gt;Strong text&lt;/strong&gt; pellentesque ligula commodo viverra vehicula. &lt;em&gt;Italic text&lt;/em&gt; at ullamcorper enim. Morbi a euismod nibh. &lt;!-- raw HTML omitted --&gt;Underline text&lt;!-- raw HTML omitted --&gt; non elit nisl. &lt;del&gt;Deleted text&lt;/del&gt; tristique, sem id condimentum tempus, metus lectus venenatis mauris, sit amet semper lorem felis a eros. Fusce egestas nibh at sagittis auctor. Sed ultricies ac arcu quis molestie. Donec dapibus nunc in nibh egestas, vitae volutpat sem iaculis. Curabitur sem tellus, elementum nec quam id, fermentum laoreet mi. Ut mollis ullamcorper turpis, vitae facilisis velit ultricies sit amet. Etiam laoreet dui odio, id tempus justo tincidunt id. Phasellus scelerisque nunc sed nunc ultricies accumsan.&lt;/p&gt;</description>
     </item>
   </channel>

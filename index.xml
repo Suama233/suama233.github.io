@@ -2,38 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>きこえるの？</title>
-    <link>https://suama.github.io/algolia.json</link>
+    <link>http://localhost:1313/algolia.json</link>
     <description>Recent content on きこえるの？</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 18 Apr 2025 02:26:52 +0800</lastBuildDate>
-    <atom:link href="https://suama.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Apr 2025 07:12:52 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[琐碎简记]二分查找、离散边界确认与终止点选择</title>
+      <link>http://localhost:1313/post/binary_search/</link>
+      <pubDate>Sat, 26 Apr 2025 07:07:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/binary_search/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;注：本篇使用语言：C++&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本背景与类似情况&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%9f%ba%e6%9c%ac%e8%83%8c%e6%99%af%e4%b8%8e%e7%b1%bb%e4%bc%bc%e6%83%85%e5%86%b5&#34;&gt;&lt;/a&gt;&#xD;&#xA;基本背景与类似情况&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;二分查找原理本身很简单：对一顺序数组取中间值，比较其与目标大小，让中间值成为新边界，二分缩短区间。此过程迭代进行，直到找到或找不到目标，时间复杂度$O(logn)$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>[学习随笔] C&#43;&#43;智能指针</title>
-      <link>https://suama.github.io/post/smart_ptr/</link>
+      <link>http://localhost:1313/post/smart_ptr/</link>
       <pubDate>Thu, 17 Apr 2025 20:41:52 +0800</pubDate>
-      <guid>https://suama.github.io/post/smart_ptr/</guid>
+      <guid>http://localhost:1313/post/smart_ptr/</guid>
       <description>&lt;h2 id=&#34;三种智能指针&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%b8%89%e7%a7%8d%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88&#34;&gt;&lt;/a&gt;&#xD;&#xA;三种智能指针&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;概述是什么及其参与的生态位&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%a6%82%e8%bf%b0%e6%98%af%e4%bb%80%e4%b9%88%e5%8f%8a%e5%85%b6%e5%8f%82%e4%b8%8e%e7%9a%84%e7%94%9f%e6%80%81%e4%bd%8d&#34;&gt;&lt;/a&gt;&#xD;&#xA;概述：是什么，及其参与的生态位&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;C++ 11&lt;/strong&gt;后，标准库（std）中新加入了四种指针：&lt;code&gt;unique_ptr&lt;/code&gt;,&lt;code&gt;shared_ptr&lt;/code&gt;,&lt;code&gt;weak_ptr&lt;/code&gt;,&lt;code&gt;auto_ptr&lt;/code&gt;(最后一种在C++17&#xA;后被废弃因而本文不做任何涉及)。它们对应的传统位置是C++的裸指针（和前者相比，纯粹的一个&lt;code&gt;T* ptr&lt;/code&gt;没有被封装，故得名）。它们的创建与删除操作对应了裸指针的&lt;code&gt;new&lt;/code&gt;,&lt;code&gt;delete&lt;/code&gt;操作。也就是说，它的核心任务是在堆上人为分配资源，但同时利用了栈与作用域的特性，实现了&lt;strong&gt;更安全&lt;/strong&gt;的资源分配。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello World</title>
-      <link>https://suama.github.io/post/hello/</link>
+      <link>http://localhost:1313/post/hello/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
-      <guid>https://suama.github.io/post/hello/</guid>
+      <guid>http://localhost:1313/post/hello/</guid>
       <description>&lt;p&gt;ここにいるよ、わたしたち。&lt;/p&gt;</description>
     </item>
     <item>
       <title>关于</title>
-      <link>https://suama.github.io/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>https://suama.github.io/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description></description>
     </item>
     <item>
       <title>友情链接</title>
-      <link>https://suama.github.io/friend/</link>
+      <link>http://localhost:1313/friend/</link>
       <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>https://suama.github.io/friend/</guid>
+      <guid>http://localhost:1313/friend/</guid>
       <description>&lt;h2 id=&#34;申请方法&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e7%94%b3%e8%af%b7%e6%96%b9%e6%b3%95&#34;&gt;&lt;/a&gt;&#xD;&#xA;申请方法&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;如有需要，请以以下格式邮箱联系联系&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;l&#34;&gt;```yml&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#您的名字&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#您的网址&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;desc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#简短描述&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#一张图片&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;```&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;友站&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%8f%8b%e7%ab%99&#34;&gt;&lt;/a&gt;&#xD;&#xA;友站&#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div class=&#34;friend-wrap&#34; data-aos=&#34;zoom-in&#34;&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;特别鸣谢&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e7%89%b9%e5%88%ab%e9%b8%a3%e8%b0%a2&#34;&gt;&lt;/a&gt;&#xD;&#xA;特别鸣谢&#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div class=&#34;friend-wrap&#34; data-aos=&#34;zoom-in&#34;&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;div class=&#34;friend-item-wrap&#34;&gt;&#xD;&#xA;      &lt;a href=&#34;https://d-sketon.github.io/&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;&lt;/a&gt;&#xD;&#xA;      &lt;div class=&#34;friend-icon-wrap&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;friend-icon&#34;&gt;&#xD;&#xA;          &lt;img&#xD;&#xA;            data-src=&#34;https://d-sketon.github.io/avatar/avatar.webp&#34;&#xD;&#xA;            data-sizes=&#34;auto&#34;&#xD;&#xA;            alt=&#34;D-Sketon&#34;&#xD;&#xA;            class=&#34;lazyload&#34;&#xD;&#xA;          /&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;      &lt;/div&gt;&#xD;&#xA;      &lt;div class=&#34;friend-info-wrap&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;friend-name&#34;&gt;&#xD;&#xA;          D-Sketon&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;        &lt;div class=&#34;friend-desc&#34;&gt;&#xD;&#xA;          主题作者&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;      &lt;/div&gt;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/div&gt;</description>
     </item>
   </channel>
