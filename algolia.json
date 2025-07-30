@@ -3,11 +3,47 @@
   
   
   {
+    "objectID": "1753843252",
+    "permalink": "/post/veritigo/",
+    "title": "[乱七八糟]《迷魂记》简单感想",
+    
+    "content": "对斯考蒂的玛德琳理型的毁灭以及用真正的坠亡将“破灭”这一意义变得不可被任何解释更改或被记忆以非遗忘的修方式修复。\n斯考蒂在“朱迪”上复原玛德琳的举动，我理解为在现实中强行塑造玛德琳这一理型。而“玛德琳”，由于附身症状与坠楼的与经验事实背离，辅以时间来抹杀除斯考蒂脑外对她的存在证明，彻底被他从现实萃取到了理型。那么这种强硬的延续本身其实也是蕴含着一种自毁冲动：即使没有挂坠，朱迪与斯考蒂也不会像玛德琳与斯考蒂，这是显而易见的。而斯考蒂的偏执在那时必然毁灭自己或非自己（极大可能是朱迪，她的对抛弃自己身份变成被演绎的假人本身比起爱情更像是半自愿的自毁）。\n我可以认为斯考蒂制造玛德琳的行为本身是在尝试向自己论证玛德琳的理型的不可制造性吗？至少我觉得他的潜意识一部分是像证明这一点的。通过证伪对心中事实的一次反驳来进一步加强对其的坚信，但这个行为被项链完全破坏了，它完全证明了被人造的质疑是真的，而且整个逻辑链是自己做出来的。这种破碎基本等价于一种对斯考蒂人格的污蔑。\n而面对这个污蔑，斯考蒂二元地有两种路：否定为事实的污蔑，这相当于完全地投入癔症，用变成精神病做影片结尾似乎怎么说都有点不太合适；另一种是接受污蔑，承认自己做错了一步并在此基础上重新开始。\n我更想将其理解为：将一个事件的结局失败更改为一个更大事件的中途的挫折？这样给了受挫者重新开始并在臆想的成功节点时将这个失败改写为经验，或“成功的基石”。那么接受朱迪，告诉自己她有成为玛德琳，甚至是她自己与玛德琳的更好的结合的可能，或者什么我没理解出来的渴望（能感觉到这是一种渴望，但这种渴望被投射到的地方感觉还有待讨论），进而将其转化为间奏，这似乎是更现实的、更有积极一面的出路。\n然后朱迪坠亡了，两个出路一个被斯考蒂自己否定一个被并不意外的意外扼杀，这个结局说实话太欧亨利了，感觉真够学很久的。\n也就是说他的这个献上自己作为人的存在的故事被在此处真真正正地结束掉了。可以说斯考蒂的人格也坠亡了。所谓的克服了恐高，只不过是因为向下看的那个人长得像斯考蒂、名字也恰好叫斯考蒂而已。他当然不会一起掉下去，但他确实已经死了。\n以《西哈诺·德·贝热拉克》的一句话做结尾：\n“我们信里的梦中情人往往是随口想个名字，用幻想唱出来的泡沫！”\n但把信寄出去的话，真的能使美梦成真吗？\n",
+    
+    "date": "2025-07-30 10:40:52",
+    "updated": "2025-07-30 10:40:52"
+  }
+  
+  , 
+  {
+    "objectID": "1745757712",
+    "permalink": "/post/leetcode_intro_to_pandas/",
+    "title": "[学习随笔] Pandas入门",
+    
+    "content": "本文使用语言：Python（有点多余了\u0026amp;hellip;）\n创建DataFrame\r从数组到DataFrame\r二维数组可以通过pd.DataFrame(list_name)直接转为DataFrame,不输入参数时默认列名为range(0-n)\n可以通过指定参数columns = \u0026amp;lt;list\u0026amp;gt;,index = \u0026amp;lt;list\u0026amp;gt;来修改列、行名，，其中\u0026amp;lt;list\u0026amp;gt;为python列表，如：\ndef createDataframe(student_data: List[List[int]]) -\u0026amp;gt; pd.DataFrame: ans_df = pd.DataFrame(student_data,columns = [\u0026amp;#39;id\u0026amp;#39;,\u0026amp;#39;age\u0026amp;#39;]) return ans_df 输入格式如：[[1,15],[2,11],[3,11],[4,20]]\n输出格式如：{\u0026amp;quot;headers\u0026amp;quot;: [\u0026amp;quot;id\u0026amp;quot;, \u0026amp;quot;age\u0026amp;quot;], \u0026amp;quot;values\u0026amp;quot;: [[1, 15], [2, 11], [3, 11], [4, 20]]}\n标准输出格式：（如print(df)）\nid age 0 1 15 1 2 11 2 3 11 3 4 20 对DataFrame的基本操作\r查询形状\r已知list_df是一个DataFrame，可以通过调用它的shape属性来获取其尺寸，返回对象类型是tuple\n与之对比的是size属性。它返回的是具体内容的个数\nplayers = [[1,20],[2,21],[3,22]] players_df = pd.DataFrame(data = players, columns = [\u0026amp;#39;Id\u0026amp;#39;, \u0026amp;#39;Age\u0026amp;#39;]) print(player_df.shape) #-----\u0026amp;gt;(3,2) ## 有三行二列 print(player_df.size) #-----\u0026amp;gt;6 ## 有六个元素（行列名未被算进去，统计占了多少“格子” 显示前x行\rdata_df.head(x) 可以显示该DataFrame的前x行\n如果不传参，默认显示前5行\n定位特定位置\r有两种主要定位方式：基于标签与基于整数\n基于标 …",
+    
+    "date": "2025-04-27 20:41:52",
+    "updated": "2025-04-27 02:26:52"
+  }
+  
+  , 
+  {
+    "objectID": "1745755972",
+    "permalink": "/post/gaussian-like_integral/",
+    "title": "[琐碎简记]高斯函数的积分方法",
+    
+    "content": "\r关于高斯函数\r$$f(x)=e^{-ax^2}$$$$\\int_{-\\infty }^{\\infty}f(x) dx = \\sqrt{\\frac{\\pi}{a}} $$\r具体求解\r首先考虑基础积分：\n令$I = \\int_{-\\infty}^{\\infty}e^{-x^2}dx$\n其本身是无法直接求解的，一个非常巧妙的方法是求$I^2$\n$$I^2 = (\\int_{-\\infty}^{\\infty}e^{-x^2}dx)^2 = (\\int_{-\\infty}^{\\infty}e^{-x^2}dx)(\\int_{-\\infty}^{\\infty}e^{-y^2}dy)$$$$I^2 = \\int_{-\\infty}^{\\infty}dx\\int_{-\\infty}^{\\infty}e^{-x^2-y^2}dy$$ 可做极坐标换元等，求得$I^2=\\pi,I=\\sqrt{\\pi}$\n再考虑含参的情况：\n$$\\int_{-\\infty }^{\\infty}e^{-ax^2}dx = \\int_{-\\infty}^{\\infty}e^{-u^2}d\\frac{u}{\\sqrt{a}} = \\frac{1}{\\sqrt{a}}\\int_{-\\infty}^{\\infty}e^{-u^2}du = \\sqrt{\\frac{\\pi}{a}}$$问题在于会有弄错原理的可能：\n$$\\int_{-\\infty }^{\\infty}e^{-2x^2}dx = \\int_{-\\infty }^{\\infty}(e^{-x^2})^2dx=\\int_{-\\infty }^{\\infty}e^{-x^2}dx\\int_{-\\infty }^{\\infty}e^{-x^2}dx $$$$\\int_{-\\infty }^{\\infty}e^{-x^2}dx\\int_{-\\infty }^{\\infty}e^{-x^2}dx= \\int_{-\\infty }^{\\infty}e^{-x^2}dx\\int_{-\\infty }^{\\infty}e^{-y^2}dy = \\pi$$ 但这样是错的。原因在于一般而言$\\int{(f(x))^a}dx\\ne(\\int{f(x)}dx)^a$，而极坐标算法事实上从来没有出现过两个$x$，应该是一直一个$x$一个$y$参与运算。\n",
+    
+    "date": "2025-04-27 20:12:52",
+    "updated": "2025-04-27 20:12:52"
+  }
+  
+  , 
+  {
     "objectID": "1745622472",
     "permalink": "/post/binary_search/",
     "title": "[琐碎简记]二分查找、离散边界确认与终止点选择",
     
-    "content": "注：本篇使用语言：C++\n基本背景与类似情况\r二分查找原理本身很简单：对一顺序数组取中间值，比较其与目标大小，让中间值成为新边界，二分缩短区间。此过程迭代进行，直到找到或找不到目标，时间复杂度$O(logn)$\n典型的类似情况是快排，因为二者本质上都是在选取中间值并更新边界的过程。\n具体分析与处理\r对中间索引的微处理\r理想状态而言应该是一直选取到中间，然后更新：比如在目标值大于中间值时，更新左边界为中间本身，右边界不变。如此往复直到夹逼出一个数\n但索引本身是离散的，这导致的问题是数学算式mid=(left+right)/2可能出现索引mid是浮点数的情况，毕竟卡到两数中间时无法取值。而代码中mid的唯一写法也只能是mid=(left+right)/2（一个等效写法是(right-left)/2+left，二者完全相同，不展开），这会导致mid其实既可能是正中间，也可能是中间稍左的位置。\n如果递归函数传参时直接将mid本身传进去，就会导致在只剩两个数时无法继续更新的情况（mid会一直与左边界相等）。而递归函数一般来说做特判都是逻辑对全过程不统一然后出bug的前兆，故应该意识到理论和实际是有差距的，需要具体情况进行微调。\n解决方法是利用离散本身的特点：“mid需要成为下一次递归的边界”本身已经暗示了一个事实：其对应的数已经被判断过了。在连续情况下这代表着mid是一个开区间而非闭区间，但因为其对应的位置本身不变而有被忽视的可能，但在这里，开闭直接决定了了传入的是mid±1还是其本身。\n也就是说，原来的方法的错误原因是，每次递归都会进行一次多余的比较，而该次比较是能对是否继续递归产生影响的。也就是说，还是逻辑没有捋清楚导致的。\n对终止判断的选取\r如果能考虑到mid更新时需要手动±1，这里会好想到些，不过或许还是积累记住更为重要？\n递归函数的终止是难点。除去比较好理解的因为达到目的而结束递归，另一种对无法达成目的的判断更不好想到（比如这里可能目标根本不在数组里）\n考虑到二分缩减区间的直观解释，无法达成显然代表着即使区间缩完也没有找到。而区间缩完也就代表着左边界等于右边界。\n这是必然能达成的吗？由于mid的最小移动量（相对于左边界）是0（靠奇数除2后舍去小数），而每次mid只会取代一个边界，另一方不变，而更新边界时数量上只有1的变化，故应该是能做到相等的。\n但用相等判据需要判断 …",
+    "content": "注：本篇使用语言：C++\n基本背景与类似情况\r二分查找原理本身很简单：对一顺序数组取中间值，比较其与目标大小，让中间值成为新边界，二分缩短区间。此过程迭代进行，直到找到或找不到目标，时间复杂度$O(logn)$\n典型的类似情况是快排，因为二者本质上都是在选取中间值并更新边界的过程。\n具体分析与处理\r对中间索引的微处理\r理想状态而言应该是一直选取到中间，然后更新：比如在目标值大于中间值时，更新左边界为中间本身，右边界不变。如此往复直到夹逼出一个数\n但索引本身是离散的，这导致的问题是数学算式mid=(left+right)/2可能出现索引mid是浮点数的情况，毕竟卡到两数中间时无法取值。而代码中mid的唯一写法也只能是mid=(left+right)/2（一个等效写法是(right-left)/2+left，二者完全相同，不展开），这会导致mid其实既可能是正中间，也可能是中间稍左的位置。\n注：两种算中点的方式还真不同：前者先算left+right是有溢出风险的\u0026amp;hellip;还是后者好些\n如果递归函数传参时直接将mid本身传进去，就会导致在只剩两个数时无法继续更新的情况（mid会一直与左边界相等）。而递归函数一般来说做特判都是逻辑对全过程不统一然后出bug的前兆，故应该意识到理论和实际是有差距的，需要具体情况进行微调。\n解决方法是利用离散本身的特点：“mid需要成为下一次递归的边界”本身已经暗示了一个事实：其对应的数已经被判断过了。在连续情况下这代表着mid是一个开区间而非闭区间，但因为其对应的位置本身不变而有被忽视的可能，但在这里，开闭直接决定了了传入的是mid±1还是其本身。\n也就是说，原来的方法的错误原因是，每次递归都会进行一次多余的比较，而该次比较是能对是否继续递归产生影响的。也就是说，还是逻辑没有捋清楚导致的。\n对终止判断的选取\r如果能考虑到mid更新时需要手动±1，这里会好想到些，不过或许还是积累记住更为重要？\n递归函数的终止是难点。除去比较好理解的因为达到目的而结束递归，另一种对无法达成目的的判断更不好想到（比如这里可能目标根本不在数组里）\n考虑到二分缩减区间的直观解释，无法达成显然代表着即使区间缩完也没有找到。而区间缩完也就代表着左边界等于右边界。\n这是必然能达成的吗？由于mid的最小移动量（相对于左边界）是0（靠奇数除2后舍去小数），而每次mid只会 …",
     
     "date": "2025-04-26 07:07:52",
     "updated": "2025-04-26 07:12:52"
@@ -35,6 +71,18 @@
     
     "date": "2023-03-15 11:00:00",
     "updated": "2023-03-15 11:00:00"
+  }
+  
+  , 
+  {
+    "objectID": "1654776772",
+    "permalink": "/post/main/",
+    "title": "Markdown Basic Elements",
+    
+    "content": "\rMarkdown 基本元素\r标题\rH1\rH2\rH3\rH4\rH5\rH6\r强调\rEmphasis, aka italics, with asterisks or underscores.\nStrong emphasis, aka bold, with asterisks or underscores.\nCombined emphasis with asterisks and underscores.\nStrikethrough uses two tildes. Scratch this.\n列表\rDefinition List (dl)\rOrdered List (ol)\rList Item 1 List Item 2 List Item 3 Unordered List (ul)\rList Item 1 List Item 2 List Item 3 段落\rLorem ipsum dolor sit amet, test link consectetur adipiscing elit. Strong text pellentesque ligula commodo viverra vehicula. Italic text at ullamcorper enim. Morbi a euismod nibh. Underline text non elit nisl. Deleted text tristique, sem id condimentum tempus, metus lectus venenatis mauris, sit amet semper lorem felis a eros. Fusce egestas nibh at sagittis auctor. Sed ultricies ac arcu quis molestie. Donec dapibus nunc in nibh egestas, vitae volutpat sem iaculis. Curabitur sem tellus, elementum nec quam id, fermentum laoreet mi. Ut mollis ullamcorper turpis, vitae facilisis velit ultricies sit amet. Etiam …",
+    
+    "date": "2022-06-09 20:12:52",
+    "updated": "2022-06-09 20:12:52"
   }
   
 ]

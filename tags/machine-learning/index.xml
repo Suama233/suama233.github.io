@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on きこえるの？</title>
+    <link>http://localhost:1313/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on きこえるの？</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 27 Apr 2025 02:26:52 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[学习随笔] Pandas入门</title>
+      <link>http://localhost:1313/post/leetcode_intro_to_pandas/</link>
+      <pubDate>Sun, 27 Apr 2025 20:41:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/leetcode_intro_to_pandas/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;本文使用语言：Python&lt;/strong&gt;（有点多余了&amp;hellip;）&lt;/p&gt;&#xA;&lt;h2 id=&#34;创建dataframe&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%88%9b%e5%bb%badataframe&#34;&gt;&lt;/a&gt;&#xD;&#xA;创建DataFrame&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;从数组到dataframe&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%bb%8e%e6%95%b0%e7%bb%84%e5%88%b0dataframe&#34;&gt;&lt;/a&gt;&#xD;&#xA;从数组到DataFrame&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;二维数组可以通过&lt;code&gt;pd.DataFrame(list_name)&lt;/code&gt;直接转为&lt;code&gt;DataFrame&lt;/code&gt;,不输入参数时默认列名为range(0-n)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

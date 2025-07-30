@@ -1,0 +1,2068 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  
+    data-theme-mode="true"
+  
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+
+
+
+
+
+
+
+  
+
+<title>
+  [学习随笔] Pandas入门 | すあま
+</title>
+<meta
+  name="description"
+  content="一个从零开始的Pandas学习笔记，题目来自LeetCode"
+/>
+
+
+
+
+
+
+
+
+
+
+<script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"clipboard\":{\"copyright\":{\"content\":\"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\",\"count\":50,\"enable\":false},\"fail\":\"复制失败\",\"success\":\"复制成功\"},\"code_block\":{\"expand\":true},\"icon_font\":false,\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":\"本文最后更新于 {time}，请注意文中内容可能已经发生变化。\"}}");
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+  
+  
+  
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cJetBrains%20Mono:400,400italic,700,700italic&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cJetBrains%20Mono:400,400italic,700,700italic&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+
+
+
+
+
+
+  
+
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css" />
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css" />
+
+
+  
+
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+
+
+
+
+  
+
+
+
+
+
+
+ <link rel="stylesheet" href="/css/loader.css" />
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+
+
+
+ <link rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+
+
+
+
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.9/dist/katex.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+
+
+
+  
+
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css" />
+
+
+
+
+
+
+
+  
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"
+  ></script>
+
+
+
+
+
+  
+
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" />
+
+
+
+
+
+    
+  </head>
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        
+          <img src="/images/taichi.png" alt="loading" />
+        
+      </div>
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        
+<div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon '>
+          
+            &#xf121;
+          
+        </div>
+        <a class="main-nav-link" href="/">首页</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon '>
+          
+            &#xf07b;
+          
+        </div>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon '>
+          
+            &#xf0f4;
+          
+        </div>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon '>
+          
+            &#xe4e2;
+          
+        </div>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/covers/kakkoii/cover1.jpg" alt="[学习随笔] Pandas入门">
+  
+
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          
+        
+  
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">[学习随笔] Pandas入门</h1>
+          </a>
+        
+      
+  
+      
+        
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+        <div id="content"
+          class="sidebar-left"
+            >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    >
+      
+        
+          <div class="sidebar-toc-sidebar">
+            <div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#创建dataframe">创建DataFrame</a>
+      <ul>
+        <li><a href="#从数组到dataframe">从数组到DataFrame</a></li>
+      </ul>
+    </li>
+    <li><a href="#对dataframe的基本操作">对DataFrame的基本操作</a>
+      <ul>
+        <li><a href="#查询形状">查询形状</a></li>
+        <li><a href="#显示前x行">显示前x行</a></li>
+        <li><a href="#定位特定位置">定位特定位置</a></li>
+        <li><a href="#添加列">添加列</a></li>
+        <li><a href="#删除重复列">删除重复列</a></li>
+        <li><a href="#删除缺失行列">删除缺失行/列</a></li>
+        <li><a href="#重命名行列">重命名行/列</a></li>
+        <li><a href="#更改数据类型">更改数据类型</a></li>
+        <li><a href="#填充na值">填充NA值</a></li>
+        <li><a href="#排序">排序</a></li>
+        <li><a href="#透视长格式表宽格式表">透视（长格式表&mdash;&gt;宽格式表）</a></li>
+        <li><a href="#融合宽格式表长格式表">融合（宽格式表&mdash;&gt;长格式表）</a></li>
+      </ul>
+    </li>
+    <li><a href="#多dataframe处理">多DataFrame处理</a>
+      <ul>
+        <li><a href="#连接">连接</a></li>
+      </ul>
+    </li>
+    <li><a href="#积累琐碎内容">积累琐碎内容</a>
+      <ul>
+        <li><a href="#获取字符串长度">获取字符串长度</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+          </div>
+          <div class="sidebar-common-sidebar hidden">
+            
+<div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="すあま"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">すあま</div>
+  <div class="sidebar-description">よろしくね～</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      4
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:anontokyo.demise578@slmail.me"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener external nofollow noreferrer"
+      ></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a
+        href="https://github.com/SCUTAyama"
+        itemprop="url"
+        target="_blank"
+        aria-label="github"
+        rel="noopener external nofollow noreferrer"
+      ></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xf121;
+        
+      </div>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xf07b;
+        
+      </div>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xf0f4;
+        
+      </div>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xe4e2;
+        
+      </div>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+
+          </div>
+        
+      
+
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+    
+  </div>
+  
+</aside>
+
+          <section id="main">
+  <article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta">
+      <div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-04-27 20:41:52 &#43;0800 CST" itemprop="datePublished"
+      >2025-04-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-04-27</time
+    >
+  </span>
+</div>
+
+      <div class="article-category">
+  
+    <a
+      class="article-category-link"
+      href="/categories/%e5%ad%a6%e4%b9%a0%e9%9a%8f%e7%ac%94"
+      data-aos="zoom-in"
+      >学习随笔</a
+    >
+  
+</div>
+
+    </div>
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p><strong>本文使用语言：Python</strong>（有点多余了&hellip;）</p>
+<h2 id="创建dataframe">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%badataframe"></a>
+创建DataFrame
+</h2><h3 id="从数组到dataframe">
+<a class="header-anchor" href="#%e4%bb%8e%e6%95%b0%e7%bb%84%e5%88%b0dataframe"></a>
+从数组到DataFrame
+</h3><p>二维数组可以通过<code>pd.DataFrame(list_name)</code>直接转为<code>DataFrame</code>,不输入参数时默认列名为range(0-n)</p>
+<p>可以通过指定参数<code>columns = &lt;list&gt;,index = &lt;list&gt;</code>来修改列、行名，，其中<code>&lt;list&gt;</code>为python列表，如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">createDataframe</span><span class="p">(</span><span class="n">student_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ans_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">student_data</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;age&#39;</span><span class="p">])</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans_df</span>
+</span></span></code></pre></div><p>输入格式如：<code>[[1,15],[2,11],[3,11],[4,20]]</code></p>
+<p>输出格式如：<code>{&quot;headers&quot;: [&quot;id&quot;, &quot;age&quot;], &quot;values&quot;: [[1, 15], [2, 11], [3, 11], [4, 20]]}</code></p>
+<p>标准输出格式：（如<code>print(df)</code>）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   id  age
+</span></span><span class="line"><span class="cl">0   1   15
+</span></span><span class="line"><span class="cl">1   2   11
+</span></span><span class="line"><span class="cl">2   3   11
+</span></span><span class="line"><span class="cl">3   4   20
+</span></span></code></pre></div><h2 id="对dataframe的基本操作">
+<a class="header-anchor" href="#%e5%af%b9dataframe%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"></a>
+对DataFrame的基本操作
+</h2><h3 id="查询形状">
+<a class="header-anchor" href="#%e6%9f%a5%e8%af%a2%e5%bd%a2%e7%8a%b6"></a>
+查询形状
+</h3><p>已知<code>list_df</code>是一个<code>DataFrame</code>，可以通过调用它的<code>shape</code>属性来获取其尺寸，返回对象类型是<code>tuple</code></p>
+<p>与之对比的是<code>size</code>属性。它返回的是具体内容的个数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">players</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">21</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">22</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="n">players_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">players</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">player_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1">#-----&gt;(3,2) ## 有三行二列</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">player_df</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>  <span class="c1">#-----&gt;6     ## 有六个元素（行列名未被算进去，统计占了多少“格子”</span>
+</span></span></code></pre></div><h3 id="显示前x行">
+<a class="header-anchor" href="#%e6%98%be%e7%a4%ba%e5%89%8dx%e8%a1%8c"></a>
+显示前x行
+</h3><p><code>data_df.head(x)</code> 可以显示该DataFrame的前x行</p>
+<p>如果不传参，默认显示前5行</p>
+<h3 id="定位特定位置">
+<a class="header-anchor" href="#%e5%ae%9a%e4%bd%8d%e7%89%b9%e5%ae%9a%e4%bd%8d%e7%bd%ae"></a>
+定位特定位置
+</h3><p>有两种主要定位方式：基于标签与基于整数</p>
+<h4 id="基于标签loc">
+<a class="header-anchor" href="#%e5%9f%ba%e4%ba%8e%e6%a0%87%e7%ad%beloc"></a>
+基于标签：<code>loc</code>
+</h4><p>其传入是基于标签的（传值也行），是包含结束位置的</p>
+<p>其基本形式是<code>df.loc[&lt;indices&gt;,&lt;cols&gt;]</code>,比如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">]</span> <span class="c1">#A行B列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">]]</span> <span class="c1">#A行BC列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;B&#39;</span><span class="p">]</span> <span class="c1">#所有行B列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="c1">#列B值为1的所有行C列</span>
+</span></span></code></pre></div><h5 id="boolean遮罩">
+<a class="header-anchor" href="#boolean%e9%81%ae%e7%bd%a9"></a>
+Boolean遮罩
+</h5><p>布尔遮罩是一个与DataFrame或Series形状相同的布尔数组（包含True和False），用于选择满足特定条件的行或列。遮罩中的True表示保留该位置的数据，False表示忽略。</p>
+<p>使用过程是：</p>
+<ol>
+<li>创建一个条件，生成布尔Series或数组。例如，df[&lsquo;B&rsquo;] &gt; 30会为每行生成True或False。</li>
+<li>将布尔遮罩传递给索引方法（如.loc或直接索引），Pandas会返回True对应的数据。</li>
+</ol>
+<p><strong>注：关于多条件组合</strong></p>
+<p>可以使用<code>~ &amp; |</code>连接不同条件进行“非、与、或”的操作，但不能用<code>not and or</code>，因为后者的作用对象是单个布尔值而非布尔数组</p>
+<h4 id="基于整数iloc">
+<a class="header-anchor" href="#%e5%9f%ba%e4%ba%8e%e6%95%b4%e6%95%b0iloc"></a>
+基于整数：<code>iloc</code>
+</h4><p>其传入的是索引值，是不包含解释位置的</p>
+<h3 id="添加列">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e5%88%97"></a>
+添加列
+</h3><p>类似C++的<code>vector</code>，在列表中添加不存在的列时，直接声明即可。如<code>data_df['new_col'] = data_df['col_1']*2</code></p>
+<h3 id="删除重复列">
+<a class="header-anchor" href="#%e5%88%a0%e9%99%a4%e9%87%8d%e5%a4%8d%e5%88%97"></a>
+删除重复列
+</h3><p>有方法<code>df.drop_duplicates(subset,keep)</code></p>
+<ul>
+<li>subset是要筛查的列，填<code>None</code>表示对所有列筛查</li>
+<li>keep参数有<code>'first','last',False</code>来保留首次出现项、末次出现项、不保留</li>
+<li>可以进一步补<code>inplace=True</code>来原地改进（但该指令不会直接返回，需要先执行，再返回df本身）</li>
+</ul>
+<h3 id="删除缺失行列">
+<a class="header-anchor" href="#%e5%88%a0%e9%99%a4%e7%bc%ba%e5%a4%b1%e8%a1%8c%e5%88%97"></a>
+删除缺失行/列
+</h3><p>有方法<code>df.dropna(axis,how,thresh,subset,inplace)</code></p>
+<ul>
+<li>axis 可以选0/1（0表示行筛选，1表示列筛选）</li>
+<li>how 可以选<code>'any','all'</code>,表示只要出现NA就删、全NA就删</li>
+<li>thresh 表示若保留需要的的最小NA数量</li>
+<li>subset如上</li>
+</ul>
+<h3 id="重命名行列">
+<a class="header-anchor" href="#%e9%87%8d%e5%91%bd%e5%90%8d%e8%a1%8c%e5%88%97"></a>
+重命名行/列
+</h3><p>有方法<code>df.rename()</code>，具体参数：</p>
+<ul>
+<li>columns 传入字典，键为原名，值为所改名，处理列</li>
+<li>index 同上，处理行</li>
+<li>copy 设置为True会返回一个新的DataFrame</li>
+<li>inplace 同上</li>
+<li>errors 可设置为<code>'raise','ignore'</code>，分别表示遇到不存在的待命名项时是报错还是忽略</li>
+</ul>
+<h3 id="更改数据类型">
+<a class="header-anchor" href="#%e6%9b%b4%e6%94%b9%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b"></a>
+更改数据类型
+</h3><p>有方法<code>df.astype()</code>，具体参数：</p>
+<ul>
+<li>dtype 传入字典，键为待改列，值为所改数据类型</li>
+<li>copy 同上</li>
+<li>errors 同上，raise会在找不到列与新数据类型无效时报错</li>
+<li>注，其无inplace参数</li>
+</ul>
+<h3 id="填充na值">
+<a class="header-anchor" href="#%e5%a1%ab%e5%85%85na%e5%80%bc"></a>
+填充NA值
+</h3><p>有方法<code>df[&lt;column&gt;].fillna()</code>,其作用对象是DataFrame与Series</p>
+<p>具体参数有：</p>
+<ul>
+<li>value 可传值，字典等。传值可定填充用值。当对DF用fillna时，选字典可对指定行/列统一fillna，键为列/行名，值为填充用值</li>
+<li>method 可选<code>'backfill', 'bfill', 'pad', 'ffill', None</code>来定填充方式</li>
+<li>axis 定轴</li>
+<li>inplace</li>
+</ul>
+<h3 id="排序">
+<a class="header-anchor" href="#%e6%8e%92%e5%ba%8f"></a>
+排序
+</h3><p>有方法<code>df.sort_values()</code>，具体参数：</p>
+<ul>
+<li>by 填依据的列的名字</li>
+<li>ascending True表示升序，否则降序</li>
+</ul>
+<h3 id="透视长格式表宽格式表">
+<a class="header-anchor" href="#%e9%80%8f%e8%a7%86%e9%95%bf%e6%a0%bc%e5%bc%8f%e8%a1%a8%e5%ae%bd%e6%a0%bc%e5%bc%8f%e8%a1%a8"></a>
+透视（长格式表&mdash;&gt;宽格式表）
+</h3><p>这本质上是将长格式表转换为宽格式表的过程。长格式表将每个观测值数据单列一行，宽格式表将每组观测数据单列一行</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">长格式表：
+</span></span><span class="line"><span class="cl">Id      Variable1    Variable2     ...     Value
+</span></span><span class="line"><span class="cl">01         Math      Mid Term      ...      99
+</span></span><span class="line"><span class="cl">01         Math        Final       ...      98
+</span></span><span class="line"><span class="cl">01        English      Final       ...      96
+</span></span><span class="line"><span class="cl">02         Math      Mid Term      ...      89
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">宽格式表：
+</span></span><span class="line"><span class="cl">Id      Key1      Key2      ...
+</span></span><span class="line"><span class="cl">id      Value1    Value2    ...  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">如:
+</span></span><span class="line"><span class="cl">Id      Math,Mid Term     Math,Final
+</span></span><span class="line"><span class="cl">01      99                98
+</span></span><span class="line"><span class="cl">01      89                88         
+</span></span></code></pre></div><p>有方法<code>df1 = df.pivot()</code>,具体参数：</p>
+<ul>
+<li>index 填入列名，该列的每个唯一值将为新DataFrame建立一个行（也就是决定新DF的划分标准）</li>
+<li>columns 确定新 DataFrame 中的列,透视表将有各数个列分别对应于所取列中的每个唯一值</li>
+<li>values 确定填入表格的具体数据是什么</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="s">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">weather</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">city</span>         <span class="o">|</span> <span class="n">month</span>    <span class="o">|</span> <span class="n">temperature</span> <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="o">------------</span> <span class="o">|</span> <span class="o">--------</span> <span class="o">|</span> <span class="o">-----------</span> <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">Jacksonville</span> <span class="o">|</span> <span class="n">January</span>  <span class="o">|</span> <span class="mi">13</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">Jacksonville</span> <span class="o">|</span> <span class="n">February</span> <span class="o">|</span> <span class="mi">23</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">Jacksonville</span> <span class="o">|</span> <span class="n">March</span>    <span class="o">|</span> <span class="mi">38</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">Jacksonville</span> <span class="o">|</span> <span class="n">April</span>    <span class="o">|</span> <span class="mi">5</span>           <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">Jacksonville</span> <span class="o">|</span> <span class="n">May</span>      <span class="o">|</span> <span class="mi">34</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ElPaso</span>       <span class="o">|</span> <span class="n">January</span>  <span class="o">|</span> <span class="mi">20</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ElPaso</span>       <span class="o">|</span> <span class="n">February</span> <span class="o">|</span> <span class="mi">6</span>           <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ElPaso</span>       <span class="o">|</span> <span class="n">March</span>    <span class="o">|</span> <span class="mi">26</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ElPaso</span>       <span class="o">|</span> <span class="n">April</span>    <span class="o">|</span> <span class="mi">2</span>           <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ElPaso</span>       <span class="o">|</span> <span class="n">May</span>      <span class="o">|</span> <span class="mi">43</span>          <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">new_df</span> <span class="o">=</span> <span class="n">weather</span><span class="p">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="err">&#39;</span><span class="n">month</span><span class="err">&#39;</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">city</span><span class="err">&#39;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">temperature</span><span class="err">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">month</span>    <span class="o">|</span> <span class="n">ElPaso</span> <span class="o">|</span> <span class="n">Jacksonville</span> <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="o">--------</span> <span class="o">|</span> <span class="o">------</span> <span class="o">|</span> <span class="o">------------</span> <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">April</span>    <span class="o">|</span> <span class="mi">2</span>      <span class="o">|</span> <span class="mi">5</span>            <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">February</span> <span class="o">|</span> <span class="mi">6</span>      <span class="o">|</span> <span class="mi">23</span>           <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">January</span>  <span class="o">|</span> <span class="mi">20</span>     <span class="o">|</span> <span class="mi">13</span>           <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">March</span>    <span class="o">|</span> <span class="mi">26</span>     <span class="o">|</span> <span class="mi">38</span>           <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">May</span>      <span class="o">|</span> <span class="mi">43</span>     <span class="o">|</span> <span class="mi">34</span>           <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="融合宽格式表长格式表">
+<a class="header-anchor" href="#%e8%9e%8d%e5%90%88%e5%ae%bd%e6%a0%bc%e5%bc%8f%e8%a1%a8%e9%95%bf%e6%a0%bc%e5%bc%8f%e8%a1%a8"></a>
+融合（宽格式表&mdash;&gt;长格式表）
+</h3><p>有方法：<code>df.melt()</code>，具体参数：</p>
+<ul>
+<li>id_vars 保持不变的列（值可能会重复出现于多列，但内容不会变）</li>
+<li>value_vars 一个id_var单子对应的不同变量的列表</li>
+<li>var_name value_vars的标头的名称</li>
+<li>value_name 值的名称</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">report=
+</span></span></span><span class="line"><span class="cl"><span class="s2">| product     | quarter_1 | quarter_2 | quarter_3 | quarter_4 |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| ----------- | --------- | --------- | --------- | --------- |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| Umbrella    | 417       | 224       | 379       | 611       |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| SleepingBag | 800       | 936       | 93        | 875       |
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;product&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;quarter_1&#34;</span><span class="p">,</span> <span class="s2">&#34;quarter_2&#34;</span><span class="p">,</span> <span class="s2">&#34;quarter_3&#34;</span><span class="p">,</span> <span class="s2">&#34;quarter_4&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var_name</span><span class="o">=</span><span class="s2">&#34;quarter&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">value_name</span><span class="o">=</span><span class="s2">&#34;sales&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">df = 
+</span></span></span><span class="line"><span class="cl"><span class="s2">| product     | quarter   | sales |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| ----------- | --------- | ----- |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| Umbrella    | quarter_1 | 417   |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| SleepingBag | quarter_1 | 800   |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| Umbrella    | quarter_2 | 224   |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| SleepingBag | quarter_2 | 936   |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| Umbrella    | quarter_3 | 379   |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| SleepingBag | quarter_3 | 93    |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| Umbrella    | quarter_4 | 611   |
+</span></span></span><span class="line"><span class="cl"><span class="s2">| SleepingBag | quarter_4 | 875   |
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p><strong>说实话melt与pivot还没太搞懂&hellip;&hellip;</strong></p>
+<h2 id="多dataframe处理">
+<a class="header-anchor" href="#%e5%a4%9adataframe%e5%a4%84%e7%90%86"></a>
+多DataFrame处理
+</h2><h3 id="连接">
+<a class="header-anchor" href="#%e8%bf%9e%e6%8e%a5"></a>
+连接
+</h3><p>有方法<code>pd.concat()</code>，具体参数：</p>
+<ul>
+<li>objs 传入待串联的Series/DataFrame的序列（如顺序的列表）</li>
+<li>axis 定轴（0-&gt;行，1-&gt;列）</li>
+</ul>
+<p>具体原理如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;B&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">dic_</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;B&#39;</span><span class="p">:[</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic_</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">dic__</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;D&#39;</span><span class="p">:[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;E&#39;</span><span class="p">:[</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;F&#39;</span><span class="p">:[</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic__</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">dic___</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;B&#39;</span><span class="p">:[</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic___</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">   A  B  C   A   B   C
+</span></span></span><span class="line"><span class="cl"><span class="s2">P  1  4  7  11  14  17
+</span></span></span><span class="line"><span class="cl"><span class="s2">Q  2  5  8  12  15  18
+</span></span></span><span class="line"><span class="cl"><span class="s2">R  3  6  9  13  16  19
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    A   B   C
+</span></span></span><span class="line"><span class="cl"><span class="s2">P   1   4   7
+</span></span></span><span class="line"><span class="cl"><span class="s2">Q   2   5   8
+</span></span></span><span class="line"><span class="cl"><span class="s2">R   3   6   9
+</span></span></span><span class="line"><span class="cl"><span class="s2">P  11  14  17
+</span></span></span><span class="line"><span class="cl"><span class="s2">Q  12  15  18
+</span></span></span><span class="line"><span class="cl"><span class="s2">R  13  16  19
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#可能存在两个DataFrame列/行名不符的情况，其处理方式如下：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span><span class="n">df3</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">     A    B    C     D     F     G
+</span></span></span><span class="line"><span class="cl"><span class="s2">P  1.0  4.0  7.0   NaN   NaN   NaN
+</span></span></span><span class="line"><span class="cl"><span class="s2">Q  2.0  5.0  8.0   NaN   NaN   NaN
+</span></span></span><span class="line"><span class="cl"><span class="s2">R  3.0  6.0  9.0   NaN   NaN   NaN
+</span></span></span><span class="line"><span class="cl"><span class="s2">P  NaN  NaN  NaN  11.0  14.0  17.0
+</span></span></span><span class="line"><span class="cl"><span class="s2">Q  NaN  NaN  NaN  12.0  15.0  18.0
+</span></span></span><span class="line"><span class="cl"><span class="s2">R  NaN  NaN  NaN  13.0  16.0  19.0
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#但不能出现待合并部分尺寸不匹配的情况，会直接报错</span>
+</span></span></code></pre></div><h2 id="积累琐碎内容">
+<a class="header-anchor" href="#%e7%a7%af%e7%b4%af%e7%90%90%e7%a2%8e%e5%86%85%e5%ae%b9"></a>
+积累琐碎内容
+</h2><h3 id="获取字符串长度">
+<a class="header-anchor" href="#%e8%8e%b7%e5%8f%96%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%95%bf%e5%ba%a6"></a>
+获取字符串长度
+</h3><p>DF中会有如下使用场景：想要将一个字符串列依次获取每个字符串长度获得一个对应的int新列。对此有方法<code>str.len()</code>。其作用对象是单列（Series），如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:[</span><span class="s1">&#39;sad&#39;</span><span class="p">,</span><span class="s1">&#39;wet&#39;</span><span class="p">,</span><span class="s1">&#39;wet&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;B&#39;</span><span class="p">:[</span><span class="s1">&#39;wet&#39;</span><span class="p">,</span><span class="s1">&#39;wet&#39;</span><span class="p">,</span><span class="s1">&#39;wet&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="s1">&#39;wet&#39;</span><span class="p">,</span><span class="s1">&#39;wet&#39;</span><span class="p">,</span><span class="s1">&#39;wet&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">df4</span><span class="o">=</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">df4:
+</span></span></span><span class="line"><span class="cl"><span class="s2">P    3
+</span></span></span><span class="line"><span class="cl"><span class="s2">Q    3
+</span></span></span><span class="line"><span class="cl"><span class="s2">R    3
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span></code></pre></div>
+      
+    </div>
+    <footer class="article-footer">
+      
+
+      
+
+      
+        
+
+<div class="share-wrapper">
+  
+    <a href="https://twitter.com/intent/tweet?url=http://localhost:1313/post/leetcode_intro_to_pandas/&amp;text=[%e5%ad%a6%e4%b9%a0%e9%9a%8f%e7%ac%94]%20Pandas%e5%85%a5%e9%97%a8&amp;via=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[学习随笔] Pandas入门">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="http://connect.qq.com/widget/shareqq/index.html?url=http://localhost:1313/post/leetcode_intro_to_pandas/&amp;title=[%e5%ad%a6%e4%b9%a0%e9%9a%8f%e7%ac%94]%20Pandas%e5%85%a5%e9%97%a8&amp;desc=%e4%b8%80%e4%b8%aa%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84Pandas%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%8c%e9%a2%98%e7%9b%ae%e6%9d%a5%e8%87%aaLeetCode&amp;source=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[学习随笔] Pandas入门">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="[学习随笔] Pandas入门">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+
+      
+
+      
+        <a
+          data-aos="zoom-in"
+          href="/post/leetcode_intro_to_pandas/#comments"
+          class="article-comment-link"
+        >
+          <span
+            class="post-comments-count waline-comment-count"
+            data-path="http//localhost1313/post/leetcode_intro_to_pandas/"
+            itemprop="commentCount"
+          ></span>
+          留言
+        </a>
+      
+
+      
+
+      
+
+      
+        <span
+          data-aos="zoom-in"
+          class="article-visitor-link"
+        >
+          <span
+            class="waline-pageview-count"
+            data-path="/post/leetcode_intro_to_pandas/"
+            >0</span
+          >
+          <em class="post-meta-item-text">阅读量</em>
+        </span>
+      
+      <ul class="article-tag-list" itemprop="keywords">
+  
+    <li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/python"
+        rel="tag"
+        >PYTHON</a
+      >
+    </li>
+  
+    <li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/machine-learning"
+        rel="tag"
+        >MACHINE LEARNING</a
+      >
+    </li>
+  
+</ul>
+
+    </footer>
+  </div>
+  
+    
+  <nav
+    id="article-nav"
+    data-aos="fade-up"
+  >
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          <img
+            data-src="/covers/kakkoii/cover1.jpg"
+            data-sizes="auto"
+            alt="[琐碎简记]高斯函数的积分方法"
+            class="lazyload"
+          />
+        
+        <a href="/post/gaussian-like_integral/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            [琐碎简记]高斯函数的积分方法
+          
+        </h3>
+      </div>
+    
+
+    
+      <div class="article-nav-link-wrap article-nav-link-right">
+        
+          <img
+            data-src="/covers/kakkoii/cover1.jpg"
+            data-sizes="auto"
+            alt="[乱七八糟]《迷魂记》简单感想"
+            class="lazyload"
+          />
+        
+        <a href="/post/veritigo/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">
+          
+            [乱七八糟]《迷魂记》简单感想
+          
+        </h3>
+      </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+<section id="comments" data-aos="fade-up">
+<div class="comment-header">
+  <h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <div class="selector-item" data-selector="waline">
+          <span>waline</span>
+        </div>
+        
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="comment-content">
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    <div class="comment waline-comment" data-aos="fade-up"
+     >
+
+
+
+
+    </div>
+    
+  
+</div>
+</section>
+
+</section>
+        </div>
+        
+        
+        
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+<footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+        2025
+      
+      <span class="footer-info-sep rotate"></span>
+      すあま
+    </div>
+    
+      <div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"
+          >&nbsp;
+            9.7k
+          </span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;
+          
+          
+
+          00:23
+        </span>
+      </div>
+    
+    
+    
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar">
+          <div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#创建dataframe">创建DataFrame</a>
+      <ul>
+        <li><a href="#从数组到dataframe">从数组到DataFrame</a></li>
+      </ul>
+    </li>
+    <li><a href="#对dataframe的基本操作">对DataFrame的基本操作</a>
+      <ul>
+        <li><a href="#查询形状">查询形状</a></li>
+        <li><a href="#显示前x行">显示前x行</a></li>
+        <li><a href="#定位特定位置">定位特定位置</a></li>
+        <li><a href="#添加列">添加列</a></li>
+        <li><a href="#删除重复列">删除重复列</a></li>
+        <li><a href="#删除缺失行列">删除缺失行/列</a></li>
+        <li><a href="#重命名行列">重命名行/列</a></li>
+        <li><a href="#更改数据类型">更改数据类型</a></li>
+        <li><a href="#填充na值">填充NA值</a></li>
+        <li><a href="#排序">排序</a></li>
+        <li><a href="#透视长格式表宽格式表">透视（长格式表&mdash;&gt;宽格式表）</a></li>
+        <li><a href="#融合宽格式表长格式表">融合（宽格式表&mdash;&gt;长格式表）</a></li>
+      </ul>
+    </li>
+    <li><a href="#多dataframe处理">多DataFrame处理</a>
+      <ul>
+        <li><a href="#连接">连接</a></li>
+      </ul>
+    </li>
+    <li><a href="#积累琐碎内容">积累琐碎内容</a>
+      <ul>
+        <li><a href="#获取字符串长度">获取字符串长度</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+        </div>
+        <div class="sidebar-common-sidebar hidden">
+          
+<div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="すあま"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">すあま</div>
+  <div class="sidebar-description">よろしくね～</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      4
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:anontokyo.demise578@slmail.me"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener external nofollow noreferrer"
+      ></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a
+        href="https://github.com/SCUTAyama"
+        itemprop="url"
+        target="_blank"
+        aria-label="github"
+        rel="noopener external nofollow noreferrer"
+      ></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xf121;
+        
+      </div>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xf07b;
+        
+      </div>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xf0f4;
+        
+      </div>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon '>
+        
+          &#xe4e2;
+        
+      </div>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+
+        </div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+
+
+
+
+
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"
+  ></script>
+
+
+
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"
+  ></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+      
+      <script src="/js/main.js" ></script>
+      
+
+
+
+  
+
+
+
+
+
+  
+      
+      <script src="/js/aos.js" ></script>
+      
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+
+
+
+
+
+  
+      
+      <script src="/js/pjax_main.js" data-pjax></script>
+      
+
+
+
+
+
+  
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    
+    
+    
+    
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"
+  ></script>
+
+
+<script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"#F452FF\",\"#FF7DF3\",\"#FFB0F8\",\"#FFD2FD\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"#FF00EF\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script>
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+        
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "すあま",
+          title: "[学习随笔] Pandas入门",
+          url: "http:\/\/localhost:1313\/post\/leetcode_intro_to_pandas\/",
+          description: "一个从零开始的Pandas学习笔记，题目来自LeetCode",
+          cover: "http:\/\/localhost:1313\/covers\/kakkoii\/cover1.jpg",
+        };
+      </script>
+    
+    
+    
+      
+
+
+
+
+
+  
+      
+      <script src="/js/insert_highlight.js" data-pjax></script>
+      
+
+      
+      
+      
+      
+      <script type="module" data-pjax>
+        
+        const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              
+              pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")
+              
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              
+              pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")
+              
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https:\/\/npm.webcache.cn\/valine@1.5.1\/dist\/Valine.min.js',
+          !'webcache|valine@1.5.1\/dist\/Valine.min.js'.startsWith('local') ? 'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE\u002bs5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn' : undefined
+        );
+        script.onload = () => {
+          const GUEST_INFO = ['nick', 'mail', 'link'];
+          const guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          const recordIP = JSON.parse('true');
+          const highlight = JSON.parse('true');
+          const visitor = JSON.parse('false');
+
+          new Valine({
+            el: '.valine-comment',
+            appId: "",
+            appKey: "",
+            placeholder: "Just go go",
+            pageSize: '10',
+            avatar: 'mp',
+            lang: 'zh-cn',
+            recordIP: recordIP,
+            highlight: highlight,
+            visitor: visitor,
+            requiredFields: guest_info,
+            path: window.location.pathname
+          });
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https:\/\/npm.webcache.cn\/@waline\/client@2.15.8\/dist\/waline.mjs';
+        
+        if ('webcache|@waline\/client@2.15.8\/dist\/waline.mjs'.startsWith('local')) {
+          
+          const module = await safeImport(walineCdn);
+          walineInit = module.init;
+        } else {
+          
+          const module = await safeImport(
+            walineCdn, 
+            'sha384-9sbqJjrfGjbkI6\/PI4nU\/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH\/KinBEAZII\/5'
+          );
+          walineInit = module.init;
+        }
+        
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: 'https:\/\/waline-for-suama-blog.vercel.app\/',
+          lang: 'zh-CN',
+          locale: JSON.parse("{}"),
+          emoji: JSON.parse("[\"https://unpkg.com/@waline/emojis@1.2.0/tw-emoji\"]"),
+          meta: JSON.parse("[\"nick\",\"mail\",\"link\"]"),
+          requiredMeta: JSON.parse("[\"nick\",\"mail\"]"),
+          wordLimit:  0 ,
+          comment: true,
+          pageSize:  10 ,
+          dark: 'html[data-theme="dark"]',
+          pageview:  true ,
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const script = loadScript(
+          'https:\/\/npm.webcache.cn\/twikoo@1.6.16\/dist\/twikoo.all.min.js',
+          !'webcache|twikoo@1.6.16\/dist\/twikoo.all.min.js'.startsWith('local') ? 'sha384-lDHsr5aZmkMS0eKnsUu6e9RWP\u002bdRmn7sgjRAKGOAoXfMyzbUK6Qi86zZK7R\u002bKvRV' : undefined
+        );
+        script.onload = () => {
+          twikoo.init({
+            envId: '',
+            el: '.twikoo-comment',
+            region: '',
+          });
+        };
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https:\/\/npm.webcache.cn\/gitalk@1.8.0\/dist\/gitalk.min.js',
+          !'webcache|gitalk@1.8.0\/dist\/gitalk.min.js'.startsWith('local') ? 'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU\/lcEH5O8eVbSDhbPwsiVUTp\/aGX\/z\/5EuMA' : undefined
+        );
+        script.onload = () => {
+          if ( false ) {
+            
+            const md5Script = loadScript(
+              'https:\/\/npm.webcache.cn\/blueimp-md5@2.19.0\/js\/md5.min.js',
+              !'webcache|blueimp-md5@2.19.0\/js\/md5.min.js'.startsWith('local') ? 'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr\/gZlbkHkL6vTthxH' : undefined
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            
+            initGitalk();
+          }
+        };
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          let gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: JSON.parse("null"),
+            id: 'location.pathname',
+            distractionFreeMode: false
+          });
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', '');
+        giscusScript.setAttribute('data-repo-id', '');
+        giscusScript.setAttribute('data-category', '');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', 'zh-CN');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  };
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+        
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-0RsG1yo/crf/1Qc14sho26SXXOTngNCjgJw7fuvXBt9W/OChF/Ijx&#43;aUuBDqQwEk" crossorigin="anonymous"
+  ></script>
+
+
+        
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-UbfRVKN3/elS1r7JcK2FhmPP&#43;KlJ4CvYwbyYD7tH&#43;uTkbT9bNJr9eJeQ0FoFbAgz" crossorigin="anonymous"
+  ></script>
+
+
+      
+    
+    
+      
+        
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/katex@0.16.9/dist/katex.min.js"
+    
+    
+    data-pjax
+    
+    integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8" crossorigin="anonymous"
+  ></script>
+
+
+        
+
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/katex@0.16.9/dist/contrib/auto-render.min.js"
+    
+    
+    data-pjax
+    
+    integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05" crossorigin="anonymous"
+  ></script>
+
+
+        <script data-pjax>
+          var renderMath = () => {
+            if (!window.renderMathInElement) return;
+            window.renderMathInElement(_$("article"), {
+              delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "\\[", right: "\\]", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+              ],
+            });
+          };
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", renderMath, { once: true });
+          } else {
+            renderMath();
+          }
+        </script>
+      
+      
+    
+  </div>
+</div>
+
+
+
+
+
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
+
+
+<script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script>
+
+
+
+
+
+
+    
+  </body>
+</html>

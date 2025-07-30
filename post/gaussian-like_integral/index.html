@@ -22,11 +22,11 @@
   
 
 <title>
-  Markdown Basic Elements | すあま
+  [琐碎简记]高斯函数的积分方法 | すあま
 </title>
 <meta
   name="description"
-  content="测试 Markdown 基本元素"
+  content="积累如何通过将单变量积分变为多变量积分来求解"
 />
 
 
@@ -313,7 +313,7 @@
 <header id="header">
   
     <picture></picture>
-    <img  fetchpriority="high" src="/covers/kakkoii/cover1.jpg" alt="Markdown Basic Elements">
+    <img  fetchpriority="high" src="/covers/kakkoii/cover1.jpg" alt="[琐碎简记]高斯函数的积分方法">
   
 
   <div id="header-outer">
@@ -326,7 +326,7 @@
   
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">Markdown Basic Elements</h1>
+            <h1 data-aos="slide-up">[琐碎简记]高斯函数的积分方法</h1>
           </a>
         
       
@@ -361,7 +361,8 @@
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#markdown-基本元素">Markdown 基本元素</a></li>
+    <li><a href="#关于高斯函数">关于高斯函数</a></li>
+    <li><a href="#具体求解">具体求解</a></li>
   </ul>
 </nav>
   </div>
@@ -383,17 +384,17 @@
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
     <div class="sidebar-state-number">
-      2
+      4
     </div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -517,11 +518,11 @@
     class="article-date-link"
     data-aos="zoom-in"
   >
-    <time datetime="2022-06-09 20:12:52 &#43;0800 CST" itemprop="datePublished"
-      >2022-06-09</time
+    <time datetime="2025-04-27 20:12:52 &#43;0800 CST" itemprop="datePublished"
+      >2025-04-27</time
     >
     <time style="display: none;" id="post-update-time"
-      >2022-06-09</time
+      >2025-04-27</time
     >
   </span>
 </div>
@@ -530,9 +531,9 @@
   
     <a
       class="article-category-link"
-      href="/categories/test"
+      href="/categories/%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0"
       data-aos="zoom-in"
-      >TEST</a
+      >琐碎简记</a
     >
   
 </div>
@@ -543,10 +544,22 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="markdown-基本元素">
-<a class="header-anchor" href="#markdown-%e5%9f%ba%e6%9c%ac%e5%85%83%e7%b4%a0"></a>
-Markdown 基本元素
-</h2>
+        <h2 id="关于高斯函数">
+<a class="header-anchor" href="#%e5%85%b3%e4%ba%8e%e9%ab%98%e6%96%af%e5%87%bd%e6%95%b0"></a>
+关于高斯函数
+</h2>$$f(x)=e^{-ax^2}$$$$\int_{-\infty }^{\infty}f(x) dx = \sqrt{\frac{\pi}{a}} $$<h2 id="具体求解">
+<a class="header-anchor" href="#%e5%85%b7%e4%bd%93%e6%b1%82%e8%a7%a3"></a>
+具体求解
+</h2><p><strong>首先考虑基础积分：</strong></p>
+<p>令$I = \int_{-\infty}^{\infty}e^{-x^2}dx$</p>
+<p>其本身是无法直接求解的，一个非常巧妙的方法是求$I^2$</p>
+$$I^2 = (\int_{-\infty}^{\infty}e^{-x^2}dx)^2 = (\int_{-\infty}^{\infty}e^{-x^2}dx)(\int_{-\infty}^{\infty}e^{-y^2}dy)$$$$I^2 = \int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}e^{-x^2-y^2}dy$$<p>
+可做极坐标换元等，求得$I^2=\pi,I=\sqrt{\pi}$</p>
+<p><strong>再考虑含参的情况：</strong></p>
+$$\int_{-\infty }^{\infty}e^{-ax^2}dx = \int_{-\infty}^{\infty}e^{-u^2}d\frac{u}{\sqrt{a}} = \frac{1}{\sqrt{a}}\int_{-\infty}^{\infty}e^{-u^2}du = \sqrt{\frac{\pi}{a}}$$<p><strong>问题在于会有弄错原理的可能：</strong></p>
+$$\int_{-\infty }^{\infty}e^{-2x^2}dx = \int_{-\infty }^{\infty}(e^{-x^2})^2dx=\int_{-\infty }^{\infty}e^{-x^2}dx\int_{-\infty }^{\infty}e^{-x^2}dx $$$$\int_{-\infty }^{\infty}e^{-x^2}dx\int_{-\infty }^{\infty}e^{-x^2}dx= \int_{-\infty }^{\infty}e^{-x^2}dx\int_{-\infty }^{\infty}e^{-y^2}dy = \pi$$<p>
+但这样是错的。原因在于一般而言$\int{(f(x))^a}dx\ne(\int{f(x)}dx)^a$，而极坐标算法事实上从来没有出现过两个$x$，应该是一直一个$x$一个$y$参与运算。</p>
+
       
     </div>
     <footer class="article-footer">
@@ -559,19 +572,19 @@ Markdown 基本元素
 
 <div class="share-wrapper">
   
-    <a href="https://twitter.com/intent/tweet?url=http://localhost:1313/post/gaussian-like_integral/&amp;text=Markdown%20Basic%20Elements&amp;via=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="Markdown Basic Elements">
+    <a href="https://twitter.com/intent/tweet?url=http://localhost:1313/post/gaussian-like_integral/&amp;text=[%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0]%e9%ab%98%e6%96%af%e5%87%bd%e6%95%b0%e7%9a%84%e7%a7%af%e5%88%86%e6%96%b9%e6%b3%95&amp;via=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[琐碎简记]高斯函数的积分方法">
       <div class="share-icon icon icon-twitter">
         
       </div>
     </a>
   
-    <a href="http://connect.qq.com/widget/shareqq/index.html?url=http://localhost:1313/post/gaussian-like_integral/&amp;title=Markdown%20Basic%20Elements&amp;desc=%e6%b5%8b%e8%af%95%20Markdown%20%e5%9f%ba%e6%9c%ac%e5%85%83%e7%b4%a0&amp;source=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="Markdown Basic Elements">
+    <a href="http://connect.qq.com/widget/shareqq/index.html?url=http://localhost:1313/post/gaussian-like_integral/&amp;title=[%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0]%e9%ab%98%e6%96%af%e5%87%bd%e6%95%b0%e7%9a%84%e7%a7%af%e5%88%86%e6%96%b9%e6%b3%95&amp;desc=%e7%a7%af%e7%b4%af%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87%e5%b0%86%e5%8d%95%e5%8f%98%e9%87%8f%e7%a7%af%e5%88%86%e5%8f%98%e4%b8%ba%e5%a4%9a%e5%8f%98%e9%87%8f%e7%a7%af%e5%88%86%e6%9d%a5%e6%b1%82%e8%a7%a3&amp;source=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[琐碎简记]高斯函数的积分方法">
       <div class="share-icon icon icon-qq">
         
       </div>
     </a>
   
-    <a href="javascript:;"  title="Markdown Basic Elements">
+    <a href="javascript:;"  title="[琐碎简记]高斯函数的积分方法">
       <div class="share-icon icon icon-weixin">
         
           <div id="share-weixin">
@@ -637,18 +650,9 @@ Markdown 基本元素
     <li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
-        href="/tags/markdown"
+        href="/tags/math"
         rel="tag"
-        >MARKDOWN</a
-      >
-    </li>
-  
-    <li class="article-tag-list-item" data-aos="zoom-in">
-      <a
-        class="article-tag-list-link"
-        href="/tags/test"
-        rel="tag"
-        >TEST</a
+        >MATH</a
       >
     </li>
   
@@ -668,15 +672,15 @@ Markdown 基本元素
           <img
             data-src="/covers/kakkoii/cover1.jpg"
             data-sizes="auto"
-            alt="Markdown Basic Elements"
+            alt="[琐碎简记]二分查找、离散边界确认与终止点选择"
             class="lazyload"
           />
         
-        <a href="/post/main/"></a>
+        <a href="/post/binary_search/"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
           
-            Markdown Basic Elements
+            [琐碎简记]二分查找、离散边界确认与终止点选择
           
         </h3>
       </div>
@@ -686,17 +690,17 @@ Markdown 基本元素
       <div class="article-nav-link-wrap article-nav-link-right">
         
           <img
-            data-src="/post-use/pic1.webp"
+            data-src="/covers/kakkoii/cover1.jpg"
             data-sizes="auto"
-            alt="Hello World"
+            alt="[学习随笔] Pandas入门"
             class="lazyload"
           />
         
-        <a href="/post/hello/"></a>
+        <a href="/post/leetcode_intro_to_pandas/"></a>
         <div class="article-nav-caption">后一篇</div>
         <h3 class="article-nav-title">
           
-            Hello World
+            [学习随笔] Pandas入门
           
         </h3>
       </div>
@@ -795,6 +799,15 @@ Markdown 基本元素
   
   
 
+  
+  
+
+  
+  
+
+  
+  
+
 
 
 <footer id="footer">
@@ -828,7 +841,7 @@ Markdown 基本元素
       <div>
         <span class="icon-brush"
           >&nbsp;
-            4.2k
+            9.7k
           </span
         >
         &nbsp;|&nbsp;
@@ -836,7 +849,7 @@ Markdown 基本元素
           
           
 
-          00:12
+          00:23
         </span>
       </div>
     
@@ -864,7 +877,8 @@ Markdown 基本元素
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#markdown-基本元素">Markdown 基本元素</a></li>
+    <li><a href="#关于高斯函数">关于高斯函数</a></li>
+    <li><a href="#具体求解">具体求解</a></li>
   </ul>
 </nav>
   </div>
@@ -886,17 +900,17 @@ Markdown 基本元素
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
     <div class="sidebar-state-number">
-      2
+      4
     </div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -1154,9 +1168,9 @@ Markdown 基本元素
       <script data-pjax>
         window.REIMU_POST = {
           author: "すあま",
-          title: "Markdown Basic Elements",
+          title: "[琐碎简记]高斯函数的积分方法",
           url: "http:\/\/localhost:1313\/post\/gaussian-like_integral\/",
-          description: "测试 Markdown 基本元素",
+          description: "积累如何通过将单变量积分变为多变量积分来求解",
           cover: "http:\/\/localhost:1313\/covers\/kakkoii\/cover1.jpg",
         };
       </script>

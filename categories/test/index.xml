@@ -10,13 +10,6 @@
     <atom:link href="http://localhost:1313/categories/test/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Markdown Basic Elements</title>
-      <link>http://localhost:1313/post/gaussian-like_integral/</link>
-      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/post/gaussian-like_integral/</guid>
-      <description>&lt;h2 id=&#34;markdown-基本元素&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#markdown-%e5%9f%ba%e6%9c%ac%e5%85%83%e7%b4%a0&#34;&gt;&lt;/a&gt;&#xD;&#xA;Markdown 基本元素&#xD;&#xA;&lt;/h2&gt;</description>
-    </item>
-    <item>
-      <title>Markdown Basic Elements</title>
       <link>http://localhost:1313/post/main/</link>
       <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
       <guid>http://localhost:1313/post/main/</guid>

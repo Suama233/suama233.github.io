@@ -6,8 +6,36 @@
     <description>Recent content on きこえるの？</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 18 Apr 2025 02:26:52 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Jul 2025 10:40:52 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[乱七八糟]《迷魂记》简单感想</title>
+      <link>http://localhost:1313/post/veritigo/</link>
+      <pubDate>Wed, 30 Jul 2025 10:40:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/veritigo/</guid>
+      <description>&lt;p&gt;对斯考蒂的玛德琳理型的毁灭以及用真正的坠亡将“破灭”这一意义变得不可被任何解释更改或被记忆以非遗忘的修方式修复。&lt;/p&gt;&#xA;&lt;p&gt;斯考蒂在“朱迪”上复原玛德琳的举动，我理解为在现实中强行塑造玛德琳这一理型。而“玛德琳”，由于附身症状与坠楼的与经验事实背离，辅以时间来抹杀除斯考蒂脑外对她的存在证明，彻底被他从现实萃取到了理型。那么这种强硬的延续本身其实也是蕴含着一种自毁冲动：即使没有挂坠，朱迪与斯考蒂也不会像玛德琳与斯考蒂，这是显而易见的。而斯考蒂的偏执在那时必然毁灭自己或非自己（极大可能是朱迪，她的对抛弃自己身份变成被演绎的假人本身比起爱情更像是半自愿的自毁）。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[学习随笔] Pandas入门</title>
+      <link>http://localhost:1313/post/leetcode_intro_to_pandas/</link>
+      <pubDate>Sun, 27 Apr 2025 20:41:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/leetcode_intro_to_pandas/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;本文使用语言：Python&lt;/strong&gt;（有点多余了&amp;hellip;）&lt;/p&gt;&#xA;&lt;h2 id=&#34;创建dataframe&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%88%9b%e5%bb%badataframe&#34;&gt;&lt;/a&gt;&#xD;&#xA;创建DataFrame&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;从数组到dataframe&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%bb%8e%e6%95%b0%e7%bb%84%e5%88%b0dataframe&#34;&gt;&lt;/a&gt;&#xD;&#xA;从数组到DataFrame&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;二维数组可以通过&lt;code&gt;pd.DataFrame(list_name)&lt;/code&gt;直接转为&lt;code&gt;DataFrame&lt;/code&gt;,不输入参数时默认列名为range(0-n)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[琐碎简记]高斯函数的积分方法</title>
+      <link>http://localhost:1313/post/gaussian-like_integral/</link>
+      <pubDate>Sun, 27 Apr 2025 20:12:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/gaussian-like_integral/</guid>
+      <description>&lt;h2 id=&#34;关于高斯函数&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%85%b3%e4%ba%8e%e9%ab%98%e6%96%af%e5%87%bd%e6%95%b0&#34;&gt;&lt;/a&gt;&#xD;&#xA;关于高斯函数&#xD;&#xA;&lt;/h2&gt;$$f(x)=e^{-ax^2}$$$$\int_{-\infty }^{\infty}f(x) dx = \sqrt{\frac{\pi}{a}} $$&lt;h2 id=&#34;具体求解&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%85%b7%e4%bd%93%e6%b1%82%e8%a7%a3&#34;&gt;&lt;/a&gt;&#xD;&#xA;具体求解&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;首先考虑基础积分：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;令$I = \int_{-\infty}^{\infty}e^{-x^2}dx$&lt;/p&gt;&#xA;&lt;p&gt;其本身是无法直接求解的，一个非常巧妙的方法是求$I^2$&lt;/p&gt;&#xA;$$I^2 = (\int_{-\infty}^{\infty}e^{-x^2}dx)^2 = (\int_{-\infty}^{\infty}e^{-x^2}dx)(\int_{-\infty}^{\infty}e^{-y^2}dy)$$$$I^2 = \int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}e^{-x^2-y^2}dy$$&lt;p&gt;&#xA;可做极坐标换元等，求得$I^2=\pi,I=\sqrt{\pi}$&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[琐碎简记]二分查找、离散边界确认与终止点选择</title>
+      <link>http://localhost:1313/post/binary_search/</link>
+      <pubDate>Sat, 26 Apr 2025 07:07:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/binary_search/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;注：本篇使用语言：C++&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本背景与类似情况&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%9f%ba%e6%9c%ac%e8%83%8c%e6%99%af%e4%b8%8e%e7%b1%bb%e4%bc%bc%e6%83%85%e5%86%b5&#34;&gt;&lt;/a&gt;&#xD;&#xA;基本背景与类似情况&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;二分查找原理本身很简单：对一顺序数组取中间值，比较其与目标大小，让中间值成为新边界，二分缩短区间。此过程迭代进行，直到找到或找不到目标，时间复杂度$O(logn)$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>[学习随笔] C&#43;&#43;智能指针</title>
       <link>http://localhost:1313/post/smart_ptr/</link>
@@ -21,13 +49,6 @@
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
       <guid>http://localhost:1313/post/hello/</guid>
       <description>&lt;p&gt;ここにいるよ、わたしたち。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Markdown Basic Elements</title>
-      <link>http://localhost:1313/post/gaussian-like_integral/</link>
-      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/post/gaussian-like_integral/</guid>
-      <description>&lt;h2 id=&#34;markdown-基本元素&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#markdown-%e5%9f%ba%e6%9c%ac%e5%85%83%e7%b4%a0&#34;&gt;&lt;/a&gt;&#xD;&#xA;Markdown 基本元素&#xD;&#xA;&lt;/h2&gt;</description>
     </item>
     <item>
       <title>Markdown Basic Elements</title>

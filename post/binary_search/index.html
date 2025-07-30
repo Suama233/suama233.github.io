@@ -391,17 +391,17 @@
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
     <div class="sidebar-state-number">
-      2
+      4
     </div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -565,6 +565,7 @@
 对中间索引的微处理
 </h3><p>理想状态而言应该是一直选取到<strong>中间</strong>，然后更新：比如在目标值大于中间值时，更新左边界为<strong>中间本身</strong>，右边界不变。如此往复直到夹逼出一个数</p>
 <p>但索引本身是离散的，这导致的问题是数学算式<code>mid=(left+right)/2</code>可能出现索引<code>mid</code>是浮点数的情况，毕竟卡到两数中间时无法取值。而代码中<code>mid</code>的唯一写法也只能是<code>mid=(left+right)/2</code>（一个等效写法是<code>(right-left)/2+left</code>，二者完全相同，不展开），这会导致mid其实既可能是正中间，也可能是中间稍左的位置。</p>
+<p><strong>注：两种算中点的方式还真不同：前者先算<code>left+right</code>是有溢出风险的&hellip;还是后者好些</strong></p>
 <p>如果递归函数传参时直接将<code>mid</code>本身传进去，就会导致在只剩两个数时无法继续更新的情况（<code>mid</code>会一直与左边界相等）。而递归函数一般来说做特判都是逻辑对全过程不统一然后出bug的前兆，故应该意识到理论和实际是有差距的，需要具体情况进行微调。</p>
 <p>解决方法是利用离散本身的特点：“<code>mid</code>需要成为下一次递归的边界”本身已经暗示了一个事实：其对应的数已经被判断过了。在连续情况下这代表着<code>mid</code>是一个开区间而非闭区间，但因为其对应的位置本身不变而有被忽视的可能，但在这里，开闭直接决定了了传入的是<code>mid±1</code>还是其本身。</p>
 <p>也就是说，原来的方法的错误原因是，每次递归都会进行一次多余的比较，而该次比较是能对是否继续递归产生影响的。也就是说，还是逻辑没有捋清楚导致的。</p>
@@ -753,6 +754,24 @@
     
 
     
+      <div class="article-nav-link-wrap article-nav-link-right">
+        
+          <img
+            data-src="/covers/kakkoii/cover1.jpg"
+            data-sizes="auto"
+            alt="[琐碎简记]高斯函数的积分方法"
+            class="lazyload"
+          />
+        
+        <a href="/post/gaussian-like_integral/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">
+          
+            [琐碎简记]高斯函数的积分方法
+          
+        </h3>
+      </div>
+    
   </nav>
 
 
@@ -844,6 +863,18 @@
   
   
 
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
 
 
 <footer id="footer">
@@ -877,7 +908,7 @@
       <div>
         <span class="icon-brush"
           >&nbsp;
-            4.0k
+            9.7k
           </span
         >
         &nbsp;|&nbsp;
@@ -885,7 +916,7 @@
           
           
 
-          00:10
+          00:23
         </span>
       </div>
     
@@ -943,17 +974,17 @@
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
     <div class="sidebar-state-number">
-      2
+      4
     </div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social">

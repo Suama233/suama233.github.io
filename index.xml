@@ -6,8 +6,29 @@
     <description>Recent content on きこえるの？</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 26 Apr 2025 07:12:52 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Jul 2025 10:40:52 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[乱七八糟]《迷魂记》简单感想</title>
+      <link>http://localhost:1313/post/veritigo/</link>
+      <pubDate>Wed, 30 Jul 2025 10:40:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/veritigo/</guid>
+      <description>&lt;p&gt;对斯考蒂的玛德琳理型的毁灭以及用真正的坠亡将“破灭”这一意义变得不可被任何解释更改或被记忆以非遗忘的修方式修复。&lt;/p&gt;&#xA;&lt;p&gt;斯考蒂在“朱迪”上复原玛德琳的举动，我理解为在现实中强行塑造玛德琳这一理型。而“玛德琳”，由于附身症状与坠楼的与经验事实背离，辅以时间来抹杀除斯考蒂脑外对她的存在证明，彻底被他从现实萃取到了理型。那么这种强硬的延续本身其实也是蕴含着一种自毁冲动：即使没有挂坠，朱迪与斯考蒂也不会像玛德琳与斯考蒂，这是显而易见的。而斯考蒂的偏执在那时必然毁灭自己或非自己（极大可能是朱迪，她的对抛弃自己身份变成被演绎的假人本身比起爱情更像是半自愿的自毁）。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[学习随笔] Pandas入门</title>
+      <link>http://localhost:1313/post/leetcode_intro_to_pandas/</link>
+      <pubDate>Sun, 27 Apr 2025 20:41:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/leetcode_intro_to_pandas/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;本文使用语言：Python&lt;/strong&gt;（有点多余了&amp;hellip;）&lt;/p&gt;&#xA;&lt;h2 id=&#34;创建dataframe&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%88%9b%e5%bb%badataframe&#34;&gt;&lt;/a&gt;&#xD;&#xA;创建DataFrame&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;从数组到dataframe&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%bb%8e%e6%95%b0%e7%bb%84%e5%88%b0dataframe&#34;&gt;&lt;/a&gt;&#xD;&#xA;从数组到DataFrame&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;二维数组可以通过&lt;code&gt;pd.DataFrame(list_name)&lt;/code&gt;直接转为&lt;code&gt;DataFrame&lt;/code&gt;,不输入参数时默认列名为range(0-n)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[琐碎简记]高斯函数的积分方法</title>
+      <link>http://localhost:1313/post/gaussian-like_integral/</link>
+      <pubDate>Sun, 27 Apr 2025 20:12:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/gaussian-like_integral/</guid>
+      <description>&lt;h2 id=&#34;关于高斯函数&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%85%b3%e4%ba%8e%e9%ab%98%e6%96%af%e5%87%bd%e6%95%b0&#34;&gt;&lt;/a&gt;&#xD;&#xA;关于高斯函数&#xD;&#xA;&lt;/h2&gt;$$f(x)=e^{-ax^2}$$$$\int_{-\infty }^{\infty}f(x) dx = \sqrt{\frac{\pi}{a}} $$&lt;h2 id=&#34;具体求解&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%85%b7%e4%bd%93%e6%b1%82%e8%a7%a3&#34;&gt;&lt;/a&gt;&#xD;&#xA;具体求解&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;首先考虑基础积分：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;令$I = \int_{-\infty}^{\infty}e^{-x^2}dx$&lt;/p&gt;&#xA;&lt;p&gt;其本身是无法直接求解的，一个非常巧妙的方法是求$I^2$&lt;/p&gt;&#xA;$$I^2 = (\int_{-\infty}^{\infty}e^{-x^2}dx)^2 = (\int_{-\infty}^{\infty}e^{-x^2}dx)(\int_{-\infty}^{\infty}e^{-y^2}dy)$$$$I^2 = \int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}e^{-x^2-y^2}dy$$&lt;p&gt;&#xA;可做极坐标换元等，求得$I^2=\pi,I=\sqrt{\pi}$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>[琐碎简记]二分查找、离散边界确认与终止点选择</title>
       <link>http://localhost:1313/post/binary_search/</link>
@@ -28,6 +49,13 @@
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
       <guid>http://localhost:1313/post/hello/</guid>
       <description>&lt;p&gt;ここにいるよ、わたしたち。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Markdown Basic Elements</title>
+      <link>http://localhost:1313/post/main/</link>
+      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/main/</guid>
+      <description>&lt;h2 id=&#34;markdown-基本元素&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#markdown-%e5%9f%ba%e6%9c%ac%e5%85%83%e7%b4%a0&#34;&gt;&lt;/a&gt;&#xD;&#xA;Markdown 基本元素&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;标题&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%a0%87%e9%a2%98&#34;&gt;&lt;/a&gt;&#xD;&#xA;标题&#xD;&#xA;&lt;/h3&gt;&lt;h1 id=&#34;h1&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h1&#34;&gt;&lt;/a&gt;&#xD;&#xA;H1&#xD;&#xA;&lt;/h1&gt;&lt;h2 id=&#34;h2&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h2&#34;&gt;&lt;/a&gt;&#xD;&#xA;H2&#xD;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;h3&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h3&#34;&gt;&lt;/a&gt;&#xD;&#xA;H3&#xD;&#xA;&lt;/h3&gt;&lt;h4 id=&#34;h4&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h4&#34;&gt;&lt;/a&gt;&#xD;&#xA;H4&#xD;&#xA;&lt;/h4&gt;&lt;h5 id=&#34;h5&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h5&#34;&gt;&lt;/a&gt;&#xD;&#xA;H5&#xD;&#xA;&lt;/h5&gt;&lt;h6 id=&#34;h6&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#h6&#34;&gt;&lt;/a&gt;&#xD;&#xA;H6&#xD;&#xA;&lt;/h6&gt;&lt;h3 id=&#34;强调&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%bc%ba%e8%b0%83&#34;&gt;&lt;/a&gt;&#xD;&#xA;强调&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;Emphasis, aka italics, with &lt;em&gt;asterisks&lt;/em&gt; or &lt;em&gt;underscores&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Strong emphasis, aka bold, with &lt;strong&gt;asterisks&lt;/strong&gt; or &lt;strong&gt;underscores&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Combined emphasis with &lt;strong&gt;asterisks and &lt;em&gt;underscores&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Strikethrough uses two tildes. &lt;del&gt;Scratch this.&lt;/del&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;列表&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e5%88%97%e8%a1%a8&#34;&gt;&lt;/a&gt;&#xD;&#xA;列表&#xD;&#xA;&lt;/h3&gt;&lt;h4 id=&#34;definition-list-dl&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#definition-list-dl&#34;&gt;&lt;/a&gt;&#xD;&#xA;Definition List (dl)&#xD;&#xA;&lt;/h4&gt;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;h4 id=&#34;ordered-list-ol&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#ordered-list-ol&#34;&gt;&lt;/a&gt;&#xD;&#xA;Ordered List (ol)&#xD;&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;List Item 1&lt;/li&gt;&#xA;&lt;li&gt;List Item 2&lt;/li&gt;&#xA;&lt;li&gt;List Item 3&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;unordered-list-ul&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#unordered-list-ul&#34;&gt;&lt;/a&gt;&#xD;&#xA;Unordered List (ul)&#xD;&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;List Item 1&lt;/li&gt;&#xA;&lt;li&gt;List Item 2&lt;/li&gt;&#xA;&lt;li&gt;List Item 3&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;段落&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%ae%b5%e8%90%bd&#34;&gt;&lt;/a&gt;&#xD;&#xA;段落&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;Lorem ipsum dolor sit amet, &lt;a href=&#34;&#34;&gt;test link&lt;/a&gt; consectetur adipiscing elit. &lt;strong&gt;Strong text&lt;/strong&gt; pellentesque ligula commodo viverra vehicula. &lt;em&gt;Italic text&lt;/em&gt; at ullamcorper enim. Morbi a euismod nibh. &lt;!-- raw HTML omitted --&gt;Underline text&lt;!-- raw HTML omitted --&gt; non elit nisl. &lt;del&gt;Deleted text&lt;/del&gt; tristique, sem id condimentum tempus, metus lectus venenatis mauris, sit amet semper lorem felis a eros. Fusce egestas nibh at sagittis auctor. Sed ultricies ac arcu quis molestie. Donec dapibus nunc in nibh egestas, vitae volutpat sem iaculis. Curabitur sem tellus, elementum nec quam id, fermentum laoreet mi. Ut mollis ullamcorper turpis, vitae facilisis velit ultricies sit amet. Etiam laoreet dui odio, id tempus justo tincidunt id. Phasellus scelerisque nunc sed nunc ultricies accumsan.&lt;/p&gt;</description>
     </item>
     <item>
       <title>关于</title>
