@@ -335,6 +335,10 @@ body {
   content: "\e61b";
 }
 
+.icon-bilibili:before {
+  content: "\e3d9";
+}
+
 .icon-email:before {
   content: "\f0e0";
 }
@@ -3001,6 +3005,10 @@ body ::selection {
 
 [data-theme="dark"] .icon-github {
   color: #bc88ff;
+}
+
+.icon-bilibili {
+  color: #00a1d6;
 }
 
 .sidebar-menu {
