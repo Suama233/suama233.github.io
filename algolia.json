@@ -3,6 +3,18 @@
   
   
   {
+    "objectID": "1754309572",
+    "permalink": "/post/d2l_3_57/",
+    "title": "[代码笔记]d2l 3.5-3.7",
+    
+    "content": "\r源代码\rimport torch import matplotlib.pyplot as plt import random from utils import * %matplotlib inline def synthtic_data(w,b,num_examples): X = torch.normal(0,0.5,(num_examples,len(w))) y = torch.matmul(X,w) + b return X,y.reshape((-1,1)) true_w = torch.tensor([-3.,-4.2]) true_b = 3.4 features,labels = synthtic_data(true_w,true_b,1000) print(f\u0026amp;#34;features: {features[0]},\\nlabels: {labels[0]}\u0026amp;#34;) plt.scatter(features[:, (1)].detach().numpy(), labels.detach().numpy(), 1) def data_iter(batch_size,features,labels): num_examples = len(features) indices = list(range(num_examples)) random.shuffle(indices) for i in range(0,num_examples,batch_size): batch_indices = torch.tensor(indices[i:min(i+batch_size,num_examples)]) yield features[batch_indices], labels[batch_indices] batch_size = 10 for X,y in data_iter(batch_size,features,labels): print(X,\u0026amp;#34;\\n\u0026amp;#34;,y) break w = torch.normal(0,0.01,size = (2,1),requires_grad=True) b = torch.zeros(1,requires_grad=True) def linreg(X,w,b): return …",
+    
+    "date": "2025-08-04 20:12:52",
+    "updated": "2025-08-04 20:12:52"
+  }
+  
+  , 
+  {
     "objectID": "1753963972",
     "permalink": "/post/d2l_3_23/",
     "title": "[代码笔记]d2l 3.2-3.3",

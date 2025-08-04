@@ -2,6 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-08-05T20:12:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="http://localhost:1313/ja/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-tw"
+                href="http://localhost:1313/zh-tw/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="http://localhost:1313/"
+                />
+  </url><url>
     <loc>http://localhost:1313/post/d2l_3_23/</loc>
     <lastmod>2025-07-31T20:12:52+08:00</lastmod>
   </url><url>
@@ -28,7 +51,7 @@
                 href="http://localhost:1313/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/markdown/</loc>
+    <loc>http://localhost:1313/tags/d2l/</loc>
     <lastmod>2025-07-31T20:12:52+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
@@ -54,34 +77,8 @@
                 href="http://localhost:1313/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/categories/test/</loc>
+    <loc>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2025-07-31T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/test/</loc>
-    <lastmod>2025-07-31T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-07-31T20:12:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="http://localhost:1313/ja/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-tw"
-                href="http://localhost:1313/zh-tw/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="http://localhost:1313/"
-                />
   </url><url>
     <loc>http://localhost:1313/post/veritigo/</loc>
     <lastmod>2025-07-30T10:40:52+08:00</lastmod>
@@ -134,7 +131,16 @@
     <loc>http://localhost:1313/post/</loc>
     <lastmod>2022-07-26T21:46:25+08:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/markdown/</loc>
+    <lastmod>2022-06-09T20:12:52+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/post/main/</loc>
+    <lastmod>2022-06-09T20:12:52+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/test/</loc>
+    <lastmod>2022-06-09T20:12:52+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/test/</loc>
     <lastmod>2022-06-09T20:12:52+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/about/</loc>

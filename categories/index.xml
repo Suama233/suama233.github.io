@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 31 Jul 2025 20:12:52 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>http://localhost:1313/categories/test/</link>
+      <title>代码笔记</title>
+      <link>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Thu, 31 Jul 2025 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/categories/test/</guid>
+      <guid>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     <item>
@@ -34,6 +34,13 @@
       <link>http://localhost:1313/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</link>
       <pubDate>Sun, 27 Apr 2025 20:12:52 +0800</pubDate>
       <guid>http://localhost:1313/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test</title>
+      <link>http://localhost:1313/categories/test/</link>
+      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
+      <guid>http://localhost:1313/categories/test/</guid>
       <description></description>
     </item>
   </channel>

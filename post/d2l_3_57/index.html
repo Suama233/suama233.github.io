@@ -22,11 +22,11 @@
   
 
 <title>
-  [琐碎简记]二分查找、离散边界确认与终止点选择 | すあま
+  [代码笔记]d2l 3.5-3.7 | すあま
 </title>
 <meta
   name="description"
-  content="递归类问题的难点：结束位置与范围迭代"
+  content="“图像分类数据集”、“softmax回归的从零开始实现”、“softmax回归的简洁实现”"
 />
 
 
@@ -313,7 +313,7 @@
 <header id="header">
   
     <picture></picture>
-    <img  fetchpriority="high" src="/covers/kakkoii/cover1.jpg" alt="[琐碎简记]二分查找、离散边界确认与终止点选择">
+    <img  fetchpriority="high" src="/covers/kakkoii/cover1.jpg" alt="[代码笔记]d2l 3.5-3.7">
   
 
   <div id="header-outer">
@@ -326,7 +326,7 @@
   
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">[琐碎简记]二分查找、离散边界确认与终止点选择</h1>
+            <h1 data-aos="slide-up">[代码笔记]d2l 3.5-3.7</h1>
           </a>
         
       
@@ -361,15 +361,18 @@
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#基本背景与类似情况">基本背景与类似情况</a></li>
-    <li><a href="#具体分析与处理">具体分析与处理</a>
+    <li>
       <ul>
-        <li><a href="#对中间索引的微处理">对中间索引的微处理</a></li>
-        <li><a href="#对终止判断的选取">对终止判断的选取</a></li>
-        <li><a href="#最终代码">最终代码</a></li>
+        <li><a href="#源代码">源代码</a></li>
+        <li><a href="#sum函数的使用"><code>.sum</code>函数的使用</a></li>
+        <li><a href="#softmax-函数">softmax 函数</a></li>
+        <li><a href="#pytorch的高级检索">PyTorch的高级检索</a></li>
+        <li><a href="#对backward函数的初步理解">对<code>.backward()</code>函数的初步理解</a></li>
+        <li><a href="#对updaterstep本质上是optimizer的step的初步理解">对<code>updater.step()</code>(本质上是optimizer的step)的初步理解</a></li>
+        <li><a href="#化简torch内置初始化策略">化简：torch内置初始化策略</a></li>
+        <li><a href="#优化softmax的计算">优化softmax的计算</a></li>
       </ul>
     </li>
-    <li><a href="#拓展关于wrapper-function">拓展：关于Wrapper Function</a></li>
   </ul>
 </nav>
   </div>
@@ -391,7 +394,7 @@
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -535,11 +538,11 @@
     class="article-date-link"
     data-aos="zoom-in"
   >
-    <time datetime="2025-04-26 07:07:52 &#43;0800 CST" itemprop="datePublished"
-      >2025-04-26</time
+    <time datetime="2025-08-04 20:12:52 &#43;0800 CST" itemprop="datePublished"
+      >2025-08-04</time
     >
     <time style="display: none;" id="post-update-time"
-      >2025-04-26</time
+      >2025-08-04</time
     >
   </span>
 </div>
@@ -548,9 +551,9 @@
   
     <a
       class="article-category-link"
-      href="/categories/%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0"
+      href="/categories/%e4%bb%a3%e7%a0%81%e7%ac%94%e8%ae%b0"
       data-aos="zoom-in"
-      >琐碎简记</a
+      >代码笔记</a
     >
   
 </div>
@@ -561,81 +564,146 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <p><strong>注：本篇使用语言：C++</strong></p>
-<h2 id="基本背景与类似情况">
-<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e8%83%8c%e6%99%af%e4%b8%8e%e7%b1%bb%e4%bc%bc%e6%83%85%e5%86%b5"></a>
-基本背景与类似情况
-</h2><p>二分查找原理本身很简单：对一顺序数组取中间值，比较其与目标大小，让中间值成为新边界，二分缩短区间。此过程迭代进行，直到找到或找不到目标，时间复杂度$O(logn)$</p>
-<p>典型的类似情况是快排，因为二者本质上都是在选取中间值并更新边界的过程。</p>
-<h2 id="具体分析与处理">
-<a class="header-anchor" href="#%e5%85%b7%e4%bd%93%e5%88%86%e6%9e%90%e4%b8%8e%e5%a4%84%e7%90%86"></a>
-具体分析与处理
-</h2><h3 id="对中间索引的微处理">
-<a class="header-anchor" href="#%e5%af%b9%e4%b8%ad%e9%97%b4%e7%b4%a2%e5%bc%95%e7%9a%84%e5%be%ae%e5%a4%84%e7%90%86"></a>
-对中间索引的微处理
-</h3><p>理想状态而言应该是一直选取到<strong>中间</strong>，然后更新：比如在目标值大于中间值时，更新左边界为<strong>中间本身</strong>，右边界不变。如此往复直到夹逼出一个数</p>
-<p>但索引本身是离散的，这导致的问题是数学算式<code>mid=(left+right)/2</code>可能出现索引<code>mid</code>是浮点数的情况，毕竟卡到两数中间时无法取值。而代码中<code>mid</code>的唯一写法也只能是<code>mid=(left+right)/2</code>（一个等效写法是<code>(right-left)/2+left</code>，二者完全相同，不展开），这会导致mid其实既可能是正中间，也可能是中间稍左的位置。</p>
-<p><strong>注：两种算中点的方式还真不同：前者先算<code>left+right</code>是有溢出风险的&hellip;还是后者好些</strong></p>
-<p>如果递归函数传参时直接将<code>mid</code>本身传进去，就会导致在只剩两个数时无法继续更新的情况（<code>mid</code>会一直与左边界相等）。而递归函数一般来说做特判都是逻辑对全过程不统一然后出bug的前兆，故应该意识到理论和实际是有差距的，需要具体情况进行微调。</p>
-<p>解决方法是利用离散本身的特点：“<code>mid</code>需要成为下一次递归的边界”本身已经暗示了一个事实：其对应的数已经被判断过了。在连续情况下这代表着<code>mid</code>是一个开区间而非闭区间，但因为其对应的位置本身不变而有被忽视的可能，但在这里，开闭直接决定了了传入的是<code>mid±1</code>还是其本身。</p>
-<p>也就是说，原来的方法的错误原因是，每次递归都会进行一次多余的比较，而该次比较是能对是否继续递归产生影响的。也就是说，还是逻辑没有捋清楚导致的。</p>
-<h3 id="对终止判断的选取">
-<a class="header-anchor" href="#%e5%af%b9%e7%bb%88%e6%ad%a2%e5%88%a4%e6%96%ad%e7%9a%84%e9%80%89%e5%8f%96"></a>
-对终止判断的选取
-</h3><p>如果能考虑到<code>mid</code>更新时需要手动±1，这里会好想到些，不过或许还是积累记住更为重要？</p>
-<p>递归函数的终止是难点。除去比较好理解的因为达到目的而结束递归，另一种对无法达成目的的判断更不好想到（比如这里可能目标根本不在数组里）</p>
-<p>考虑到二分缩减区间的直观解释，无法达成显然代表着即使区间缩完也没有找到。而区间缩完也就代表着左边界等于右边界。</p>
-<p>这是必然能达成的吗？由于mid的最小移动量（相对于左边界）是0（靠奇数除2后舍去小数），而每次<code>mid</code>只会取代一个边界，另一方不变，而更新边界时数量上只有1的变化，故应该是能做到相等的。</p>
-<p>但用相等判据需要判断两条：左右边界相等且该点值不为目标值。事实上有更自然的方法：当左边界大于右边界时结束。这是依靠了mid每次必然±1的特性（没法解释了，属于是初见会抱怨为什么想不到，但如果不看就真的想不到的判据）</p>
-<h3 id="最终代码">
-<a class="header-anchor" href="#%e6%9c%80%e7%bb%88%e4%bb%a3%e7%a0%81"></a>
-最终代码
-</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">solve</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="n">nums</span><span class="p">,</span><span class="kt">int</span> <span class="n">target</span><span class="p">,</span><span class="kt">int</span> <span class="n">left_edge</span><span class="p">,</span><span class="kt">int</span> <span class="n">right_edge</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left_edge</span><span class="o">+</span><span class="n">right_edge</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="o">==</span><span class="n">target</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">left_edge</span><span class="o">&gt;</span><span class="n">right_edge</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="o">&gt;</span><span class="n">target</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nf">solve</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="n">target</span><span class="p">,</span><span class="n">left_edge</span><span class="p">,</span><span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nf">solve</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="n">target</span><span class="p">,</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">right_edge</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">search</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">left_edge</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">right_edge</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="n">target</span><span class="p">,</span><span class="n">left_edge</span><span class="p">,</span><span class="n">right_edge</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></div><h2 id="拓展关于wrapper-function">
-<a class="header-anchor" href="#%e6%8b%93%e5%b1%95%e5%85%b3%e4%ba%8ewrapper-function"></a>
-拓展：关于Wrapper Function
-</h2><p>在LeetCode中，已经给出了测试函数：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">search</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">//Coding here
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></div><p>实际上也有很多为了接口设计或类似原因，提供进来的接口不能随便改的情况。显然这个函数本身不适合设计为递归函数（先不考虑循环，二者原理本质一样的）。</p>
-<p>这种情景下常设计一个Wrapper Function，它的传参等情况专门为解决问题而设计。让接口传入后准备递归入口需要的数据，然后让入口函数本身来调用递归函数就行了。具体如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">data</span><span class="p">);</span><span class="c1">//具体实现略
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="nf">search</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></div><p>这也能保证专门用来解决问题的函数的内部处理时用的变量不泄露到区域外去，算是一种好习惯吧。</p>
+        <h3 id="源代码">
+<a class="header-anchor" href="#%e6%ba%90%e4%bb%a3%e7%a0%81"></a>
+源代码
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">synthtic_data</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">num_examples</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,(</span><span class="n">num_examples</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">true_w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">3.</span><span class="p">,</span><span class="o">-</span><span class="mf">4.2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">true_b</span> <span class="o">=</span> <span class="mf">3.4</span>
+</span></span><span class="line"><span class="cl"><span class="n">features</span><span class="p">,</span><span class="n">labels</span> <span class="o">=</span> <span class="n">synthtic_data</span><span class="p">(</span><span class="n">true_w</span><span class="p">,</span><span class="n">true_b</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;features: </span><span class="si">{</span><span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">labels: </span><span class="si">{</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">labels</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">data_iter</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">num_examples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_examples</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_examples</span><span class="p">,</span><span class="n">batch_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">batch_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="nb">min</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">,</span><span class="n">num_examples</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">features</span><span class="p">[</span><span class="n">batch_indices</span><span class="p">],</span> <span class="n">labels</span><span class="p">[</span><span class="n">batch_indices</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">X</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">data_iter</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">linreg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">squared_loss</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">y_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sgd</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">lr</span><span class="p">,</span><span class="n">batch_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">param</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">grad</span><span class="o">/</span><span class="n">batch_size</span>
+</span></span><span class="line"><span class="cl">            <span class="n">param</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">lr</span>  <span class="o">=</span> <span class="mf">0.01</span>
+</span></span><span class="line"><span class="cl"><span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="o">=</span> <span class="n">linreg</span>
+</span></span><span class="line"><span class="cl"><span class="n">loss</span> <span class="o">=</span> <span class="n">squared_loss</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">X</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">data_iter</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">l</span>  <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">l</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sgd</span><span class="p">([</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">],</span><span class="n">lr</span><span class="p">,</span><span class="n">batch_size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">train_l</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;epoch: </span><span class="si">{</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">,train_l: </span><span class="si">{</span><span class="n">train_l</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><hr>
+<h3 id="sum函数的使用">
+<a class="header-anchor" href="#sum%e5%87%bd%e6%95%b0%e7%9a%84%e4%bd%bf%e7%94%a8"></a>
+<code>.sum</code>函数的使用
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">X</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">(tensor([[5., 7., 9.]]),
+</span></span><span class="line"><span class="cl"> tensor([[ 6.],
+</span></span><span class="line"><span class="cl">         [15.]]))
+</span></span><span class="line"><span class="cl">tensor([5., 7., 9.])
+</span></span></code></pre></div><p><code>.sum</code>会按照轴方向求和，将其理解为某一箭头方向坍缩到其法平面上比较好</p>
+<h3 id="softmax-函数">
+<a class="header-anchor" href="#softmax-%e5%87%bd%e6%95%b0"></a>
+softmax 函数
+</h3>$$softmax(\bold{X})_{ij} = \frac{exp(\bold{X_{ij}})}{\sum_{k}exp(\bold{X_{ik}})}$$$$softmax(\vec{x}) = \frac{e^{x_i}}{\sum_je^{x_j}}$$<p>
+然后将其对矩阵的每个样本进行操作得到映射的拓展</p>
+<h3 id="pytorch的高级检索">
+<a class="header-anchor" href="#pytorch%e7%9a%84%e9%ab%98%e7%ba%a7%e6%a3%80%e7%b4%a2"></a>
+PyTorch的高级检索
+</h3><p>例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_hat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_hat</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tensor([0.1000, 0.5000])
+</span></span></code></pre></div><p>对于$m$个样本的$k$类分类问题，
+第二行的<code>y_hat</code>每个位置的$k$个结果，第$j$个位置的值表示其对应结果的概率
+而第三行的<code>[0,1]</code>表示选中<code>y_hat</code>的<strong>0、1</strong>行，
+然后<code>y</code>进列的选择：它选择y的第<strong>0</strong>列的值对应的<code>y_hat</code>的第<strong>0</strong>列元素，也就是0.1；然后选择y的第<strong>1</strong>列的值对应的<code>y_hat</code>的第<strong>2</strong>列元素，也就是0.5</p>
+<p><strong>应用</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_hat</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)),</span> <span class="n">y</span><span class="p">])</span>
+</span></span></code></pre></div><p>（返回的是同y尺寸的$\textit{cross entropy}$向量）
+这里用了<code>range(len(y_hat))</code>来遍历所有行（所有样本）；注意不能用<code>[0,len(y(hat)-1)]</code>代替，后者得到的只有首位两行而不是整个区间</p>
+<h3 id="对backward函数的初步理解">
+<a class="header-anchor" href="#%e5%af%b9backward%e5%87%bd%e6%95%b0%e7%9a%84%e5%88%9d%e6%ad%a5%e7%90%86%e8%a7%a3"></a>
+对<code>.backward()</code>函数的初步理解
+</h3><ul>
+<li>
+<p>其目标是计算loss对params的梯度</p>
+</li>
+<li>
+<p><code>.backward()</code>方法会从计算图的末端（一般而言是loss）开始反向传播计算每个参数的梯度</p>
+</li>
+<li>
+<p>其要求调用的张量是标量，因此是用如<code>l.mean().backward()</code>或<code>l.sum().backward()</code>，而不是直接<code>l.backward()</code></p>
+</li>
+</ul>
+<h3 id="对updaterstep本质上是optimizer的step的初步理解">
+<a class="header-anchor" href="#%e5%af%b9updaterstep%e6%9c%ac%e8%b4%a8%e4%b8%8a%e6%98%afoptimizer%e7%9a%84step%e7%9a%84%e5%88%9d%e6%ad%a5%e7%90%86%e8%a7%a3"></a>
+对<code>updater.step()</code>(本质上是optimizer的step)的初步理解
+</h3><p>其使用需要一些前置要求：</p>
+<ul>
+<li>先调用<code>.backward()</code>求出梯度</li>
+<li>先正确初始化optimizer(如正确传入待优化的参数)</li>
+<li>参数启用梯度</li>
+</ul>
+<p>其效果是根据梯度更新对应参数</p>
+<h3 id="化简torch内置初始化策略">
+<a class="header-anchor" href="#%e5%8c%96%e7%ae%80torch%e5%86%85%e7%bd%ae%e5%88%9d%e5%a7%8b%e5%8c%96%e7%ad%96%e7%95%a5"></a>
+化简：torch内置初始化策略
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span><span class="n">std</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">net</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">init_weights</span><span class="p">)</span>
+</span></span></code></pre></div><ul>
+<li>这里<code>m</code>的类型是<code>module</code>，也就是<code>torch.nn.Module</code>的子类（如<code>nn.Linear</code>、<code>nn.Conv2d</code>）</li>
+<li>对比：<code>torch.nn.init.normal</code>、<code>torch.nn.init.normal</code>、<code>torch.normal</code>
+<ul>
+<li>前二者区别为原地修改与返回张量</li>
+<li>语法：<code>torch.nn.init.normal_(tensor, mean=0.0, std=1.0)</code></li>
+<li>第三者专门用来生成新张量，有更广的应用范围。而前两者专注于网络架构的参数初始化（代码习惯与api复杂度不同）</li>
+</ul>
+</li>
+</ul>
+<h3 id="优化softmax的计算">
+<a class="header-anchor" href="#%e4%bc%98%e5%8c%96softmax%e7%9a%84%e8%ae%a1%e7%ae%97"></a>
+优化softmax的计算
+</h3><p><strong>数值稳定性</strong>存在问题：$exp(x_i)$值过大导致储存为<code>inf</code>(上溢)</p>
+<p>初次处理思路：</p>
+$$\hat{y_j} = \frac{exp(x_j-max(x_k))\cdot exp(max(x_k))}{\sum_{k}{exp(x_k-max(x_k))\cdot exp(max(x_k))}} = \frac{exp(x_j-max(x_k))}{\sum_{k}{exp(x_k-max(x_k))}}$$<p>但这仍会存在问题：有些$x_i-max(x_k)$太小导致$exp(x_i-max(x_k))$接近零后被直接舍位为$0$(下溢)（并进一步导致$log(\hat{y_i}) = \text{-inf}$）</p>
+$$log(\hat{y_i}) = log(exp(\ldots))-log(\sum exp(\ldots))$$$$log(\hat{y_i})=  x_i - max(x_k) - log(\sum_{k}exp(x_i-max(x_k)))$$<p>这在一定程度上与torch用的算法相接近。而cross entropy可以由$L = \sum{y_i log(\hat{y_i})}$的基本形得到</p>
 
       
     </div>
@@ -649,19 +717,19 @@
 
 <div class="share-wrapper">
   
-    <a href="https://twitter.com/intent/tweet?url=http://localhost:1313/post/binary_search/&amp;text=[%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0]%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e3%80%81%e7%a6%bb%e6%95%a3%e8%be%b9%e7%95%8c%e7%a1%ae%e8%ae%a4%e4%b8%8e%e7%bb%88%e6%ad%a2%e7%82%b9%e9%80%89%e6%8b%a9&amp;via=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[琐碎简记]二分查找、离散边界确认与终止点选择">
+    <a href="https://twitter.com/intent/tweet?url=http://localhost:1313/post/d2l_3_57/&amp;text=[%e4%bb%a3%e7%a0%81%e7%ac%94%e8%ae%b0]d2l%203.5-3.7&amp;via=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[代码笔记]d2l 3.5-3.7">
       <div class="share-icon icon icon-twitter">
         
       </div>
     </a>
   
-    <a href="http://connect.qq.com/widget/shareqq/index.html?url=http://localhost:1313/post/binary_search/&amp;title=[%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0]%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e3%80%81%e7%a6%bb%e6%95%a3%e8%be%b9%e7%95%8c%e7%a1%ae%e8%ae%a4%e4%b8%8e%e7%bb%88%e6%ad%a2%e7%82%b9%e9%80%89%e6%8b%a9&amp;desc=%e9%80%92%e5%bd%92%e7%b1%bb%e9%97%ae%e9%a2%98%e7%9a%84%e9%9a%be%e7%82%b9%ef%bc%9a%e7%bb%93%e6%9d%9f%e4%bd%8d%e7%bd%ae%e4%b8%8e%e8%8c%83%e5%9b%b4%e8%bf%ad%e4%bb%a3&amp;source=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[琐碎简记]二分查找、离散边界确认与终止点选择">
+    <a href="http://connect.qq.com/widget/shareqq/index.html?url=http://localhost:1313/post/d2l_3_57/&amp;title=[%e4%bb%a3%e7%a0%81%e7%ac%94%e8%ae%b0]d2l%203.5-3.7&amp;desc=%e2%80%9c%e5%9b%be%e5%83%8f%e5%88%86%e7%b1%bb%e6%95%b0%e6%8d%ae%e9%9b%86%e2%80%9d%e3%80%81%e2%80%9csoftmax%e5%9b%9e%e5%bd%92%e7%9a%84%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e5%ae%9e%e7%8e%b0%e2%80%9d%e3%80%81%e2%80%9csoftmax%e5%9b%9e%e5%bd%92%e7%9a%84%e7%ae%80%e6%b4%81%e5%ae%9e%e7%8e%b0%e2%80%9d&amp;source=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="[代码笔记]d2l 3.5-3.7">
       <div class="share-icon icon icon-qq">
         
       </div>
     </a>
   
-    <a href="javascript:;"  title="[琐碎简记]二分查找、离散边界确认与终止点选择">
+    <a href="javascript:;"  title="[代码笔记]d2l 3.5-3.7">
       <div class="share-icon icon icon-weixin">
         
           <div id="share-weixin">
@@ -693,12 +761,12 @@
       
         <a
           data-aos="zoom-in"
-          href="/post/binary_search/#comments"
+          href="/post/d2l_3_57/#comments"
           class="article-comment-link"
         >
           <span
             class="post-comments-count waline-comment-count"
-            data-path="http//localhost1313/post/binary_search/"
+            data-path="http//localhost1313/post/d2l_3_57/"
             itemprop="commentCount"
           ></span>
           留言
@@ -716,7 +784,7 @@
         >
           <span
             class="waline-pageview-count"
-            data-path="/post/binary_search/"
+            data-path="/post/d2l_3_57/"
             >0</span
           >
           <em class="post-meta-item-text">阅读量</em>
@@ -727,9 +795,9 @@
     <li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
-        href="/tags/code-algorithm"
+        href="/tags/d2l"
         rel="tag"
-        >CODE &amp; ALGORITHM</a
+        >D2L</a
       >
     </li>
   
@@ -749,38 +817,20 @@
           <img
             data-src="/covers/kakkoii/cover1.jpg"
             data-sizes="auto"
-            alt="[学习随笔] C&#43;&#43;智能指针"
+            alt="[代码笔记]d2l 3.2-3.3"
             class="lazyload"
           />
         
-        <a href="/post/smart_ptr/"></a>
+        <a href="/post/d2l_3_23/"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
           
-            [学习随笔] C&#43;&#43;智能指针
+            [代码笔记]d2l 3.2-3.3
           
         </h3>
       </div>
     
 
-    
-      <div class="article-nav-link-wrap article-nav-link-right">
-        
-          <img
-            data-src="/covers/kakkoii/cover1.jpg"
-            data-sizes="auto"
-            alt="[琐碎简记]高斯函数的积分方法"
-            class="lazyload"
-          />
-        
-        <a href="/post/gaussian-like_integral/"></a>
-        <div class="article-nav-caption">后一篇</div>
-        <h3 class="article-nav-title">
-          
-            [琐碎简记]高斯函数的积分方法
-          
-        </h3>
-      </div>
     
   </nav>
 
@@ -888,6 +938,9 @@
   
   
 
+  
+  
+
 
 
 <footer id="footer">
@@ -921,7 +974,7 @@
       <div>
         <span class="icon-brush"
           >&nbsp;
-            10.7k
+            12.1k
           </span
         >
         &nbsp;|&nbsp;
@@ -929,7 +982,7 @@
           
           
 
-          00:26
+          00:29
         </span>
       </div>
     
@@ -957,15 +1010,18 @@
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#基本背景与类似情况">基本背景与类似情况</a></li>
-    <li><a href="#具体分析与处理">具体分析与处理</a>
+    <li>
       <ul>
-        <li><a href="#对中间索引的微处理">对中间索引的微处理</a></li>
-        <li><a href="#对终止判断的选取">对终止判断的选取</a></li>
-        <li><a href="#最终代码">最终代码</a></li>
+        <li><a href="#源代码">源代码</a></li>
+        <li><a href="#sum函数的使用"><code>.sum</code>函数的使用</a></li>
+        <li><a href="#softmax-函数">softmax 函数</a></li>
+        <li><a href="#pytorch的高级检索">PyTorch的高级检索</a></li>
+        <li><a href="#对backward函数的初步理解">对<code>.backward()</code>函数的初步理解</a></li>
+        <li><a href="#对updaterstep本质上是optimizer的step的初步理解">对<code>updater.step()</code>(本质上是optimizer的step)的初步理解</a></li>
+        <li><a href="#化简torch内置初始化策略">化简：torch内置初始化策略</a></li>
+        <li><a href="#优化softmax的计算">优化softmax的计算</a></li>
       </ul>
     </li>
-    <li><a href="#拓展关于wrapper-function">拓展：关于Wrapper Function</a></li>
   </ul>
 </nav>
   </div>
@@ -987,7 +1043,7 @@
   <div class="sidebar-state-article">
     <div>文章</div>
     
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -1265,9 +1321,9 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "すあま",
-          title: "[琐碎简记]二分查找、离散边界确认与终止点选择",
-          url: "http:\/\/localhost:1313\/post\/binary_search\/",
-          description: "递归类问题的难点：结束位置与范围迭代",
+          title: "[代码笔记]d2l 3.5-3.7",
+          url: "http:\/\/localhost:1313\/post\/d2l_3_57\/",
+          description: "“图像分类数据集”、“softmax回归的从零开始实现”、“softmax回归的简洁实现”",
           cover: "http:\/\/localhost:1313\/covers\/kakkoii\/cover1.jpg",
         };
       </script>
