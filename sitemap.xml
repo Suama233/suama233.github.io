@@ -2,24 +2,24 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <sitemap>
-    <loc>http://localhost:1313/zh-cn/sitemap.xml</loc>
+    <loc>https://suama.github.io/zh-cn/sitemap.xml</loc>
     
-      <lastmod>2025-08-05T20:12:52+08:00</lastmod>
-    
-  </sitemap>
-  
-  <sitemap>
-    <loc>http://localhost:1313/en/sitemap.xml</loc>
+      <lastmod>2025-08-07T20:12:52+08:00</lastmod>
     
   </sitemap>
   
   <sitemap>
-    <loc>http://localhost:1313/ja/sitemap.xml</loc>
+    <loc>https://suama.github.io/en/sitemap.xml</loc>
     
   </sitemap>
   
   <sitemap>
-    <loc>http://localhost:1313/zh-tw/sitemap.xml</loc>
+    <loc>https://suama.github.io/ja/sitemap.xml</loc>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://suama.github.io/zh-tw/sitemap.xml</loc>
     
   </sitemap>
   

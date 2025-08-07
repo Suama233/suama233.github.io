@@ -2,151 +2,139 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://suama.github.io/post/d2l_5/</loc>
+    <lastmod>2025-08-07T20:12:52+08:00</lastmod>
+  </url><url>
+    <loc>https://suama.github.io/categories/</loc>
+    <lastmod>2025-08-07T20:12:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://suama.github.io/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://suama.github.io/ja/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-tw"
+                href="https://suama.github.io/zh-tw/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://suama.github.io/categories/"
+                />
+  </url><url>
+    <loc>https://suama.github.io/tags/d2l/</loc>
+    <lastmod>2025-08-07T20:12:52+08:00</lastmod>
+  </url><url>
+    <loc>https://suama.github.io/tags/</loc>
+    <lastmod>2025-08-07T20:12:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://suama.github.io/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://suama.github.io/ja/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-tw"
+                href="https://suama.github.io/zh-tw/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://suama.github.io/tags/"
+                />
+  </url><url>
+    <loc>https://suama.github.io/</loc>
+    <lastmod>2025-08-07T20:12:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://suama.github.io/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://suama.github.io/ja/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-tw"
+                href="https://suama.github.io/zh-tw/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://suama.github.io/"
+                />
+  </url><url>
+    <loc>https://suama.github.io/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2025-08-07T20:12:52+08:00</lastmod>
+  </url><url>
+    <loc>https://suama.github.io/post/d2l_4/</loc>
     <lastmod>2025-08-05T20:12:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="http://localhost:1313/ja/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-tw"
-                href="http://localhost:1313/zh-tw/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="http://localhost:1313/"
-                />
   </url><url>
-    <loc>http://localhost:1313/post/d2l_3_23/</loc>
+    <loc>https://suama.github.io/post/d2l_3_57/</loc>
+    <lastmod>2025-08-04T20:12:52+08:00</lastmod>
+  </url><url>
+    <loc>https://suama.github.io/post/d2l_3_23/</loc>
     <lastmod>2025-07-31T20:12:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-07-31T20:12:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="http://localhost:1313/ja/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-tw"
-                href="http://localhost:1313/zh-tw/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="http://localhost:1313/categories/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/tags/d2l/</loc>
-    <lastmod>2025-07-31T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-07-31T20:12:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="http://localhost:1313/ja/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-tw"
-                href="http://localhost:1313/zh-tw/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="http://localhost:1313/tags/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2025-07-31T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/veritigo/</loc>
+    <loc>https://suama.github.io/post/veritigo/</loc>
     <lastmod>2025-07-30T10:40:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/films/</loc>
+    <loc>https://suama.github.io/tags/films/</loc>
     <lastmod>2025-07-30T10:40:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/rolling/</loc>
+    <loc>https://suama.github.io/categories/rolling/</loc>
     <lastmod>2025-07-30T10:40:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/leetcode_intro_to_pandas/</loc>
+    <loc>https://suama.github.io/post/leetcode_intro_to_pandas/</loc>
     <lastmod>2025-04-27T02:26:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/machine-learning/</loc>
+    <loc>https://suama.github.io/tags/machine-learning/</loc>
     <lastmod>2025-04-27T02:26:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
+    <loc>https://suama.github.io/tags/python/</loc>
     <lastmod>2025-04-27T02:26:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://suama.github.io/categories/%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2025-04-27T02:26:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/gaussian-like_integral/</loc>
-    <lastmod>2025-04-27T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/math/</loc>
-    <lastmod>2025-04-27T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</loc>
-    <lastmod>2025-04-27T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/binary_search/</loc>
+    <loc>https://suama.github.io/post/binary_search/</loc>
     <lastmod>2025-04-26T07:12:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/code--algorithm/</loc>
+    <loc>https://suama.github.io/tags/code--algorithm/</loc>
     <lastmod>2025-04-26T07:12:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/smart_ptr/</loc>
+    <loc>https://suama.github.io/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</loc>
+    <lastmod>2025-04-26T07:12:52+08:00</lastmod>
+  </url><url>
+    <loc>https://suama.github.io/post/smart_ptr/</loc>
     <lastmod>2025-04-18T02:26:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/modern-c&#43;&#43;/</loc>
+    <loc>https://suama.github.io/tags/modern-c&#43;&#43;/</loc>
     <lastmod>2025-04-18T02:26:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/hello/</loc>
+    <loc>https://suama.github.io/post/hello/</loc>
     <lastmod>2023-03-15T11:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://suama.github.io/archives/</loc>
     <lastmod>2022-07-26T21:46:25+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2022-07-26T21:46:25+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/markdown/</loc>
+    <loc>https://suama.github.io/about/</loc>
     <lastmod>2022-06-09T20:12:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/main/</loc>
-    <lastmod>2022-06-09T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/test/</loc>
-    <lastmod>2022-06-09T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/test/</loc>
-    <lastmod>2022-06-09T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/about/</loc>
-    <lastmod>2022-06-09T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/friend/</loc>
+    <loc>https://suama.github.io/friend/</loc>
     <lastmod>2022-06-09T20:12:52+08:00</lastmod>
   </url>
 </urlset>

@@ -2,73 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on きこえるの？</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://suama.github.io/tags/</link>
     <description>Recent content in Tags on きこえるの？</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 31 Jul 2025 20:12:52 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Aug 2025 20:12:52 +0800</lastBuildDate>
+    <atom:link href="https://suama.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>D2l</title>
-      <link>http://localhost:1313/tags/d2l/</link>
-      <pubDate>Thu, 31 Jul 2025 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/d2l/</guid>
+      <link>https://suama.github.io/tags/d2l/</link>
+      <pubDate>Thu, 07 Aug 2025 20:12:52 +0800</pubDate>
+      <guid>https://suama.github.io/tags/d2l/</guid>
       <description></description>
     </item>
     <item>
       <title>Films</title>
-      <link>http://localhost:1313/tags/films/</link>
+      <link>https://suama.github.io/tags/films/</link>
       <pubDate>Wed, 30 Jul 2025 10:40:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/films/</guid>
+      <guid>https://suama.github.io/tags/films/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:1313/tags/machine-learning/</link>
+      <link>https://suama.github.io/tags/machine-learning/</link>
       <pubDate>Sun, 27 Apr 2025 20:41:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/machine-learning/</guid>
+      <guid>https://suama.github.io/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
+      <link>https://suama.github.io/tags/python/</link>
       <pubDate>Sun, 27 Apr 2025 20:41:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/python/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Math</title>
-      <link>http://localhost:1313/tags/math/</link>
-      <pubDate>Sun, 27 Apr 2025 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/math/</guid>
+      <guid>https://suama.github.io/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Code &amp; Algorithm</title>
-      <link>http://localhost:1313/tags/code--algorithm/</link>
+      <link>https://suama.github.io/tags/code--algorithm/</link>
       <pubDate>Sat, 26 Apr 2025 07:07:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/code--algorithm/</guid>
+      <guid>https://suama.github.io/tags/code--algorithm/</guid>
       <description></description>
     </item>
     <item>
       <title>Modern C&#43;&#43;</title>
-      <link>http://localhost:1313/tags/modern-c&#43;&#43;/</link>
+      <link>https://suama.github.io/tags/modern-c&#43;&#43;/</link>
       <pubDate>Thu, 17 Apr 2025 20:41:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/modern-c&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Markdown</title>
-      <link>http://localhost:1313/tags/markdown/</link>
-      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/markdown/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1313/tags/test/</link>
-      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/tags/test/</guid>
+      <guid>https://suama.github.io/tags/modern-c&#43;&#43;/</guid>
       <description></description>
     </item>
   </channel>

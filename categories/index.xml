@@ -2,45 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on きこえるの？</title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://suama.github.io/categories/</link>
     <description>Recent content in Categories on きこえるの？</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 31 Jul 2025 20:12:52 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Aug 2025 20:12:52 +0800</lastBuildDate>
+    <atom:link href="https://suama.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>代码笔记</title>
-      <link>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Thu, 31 Jul 2025 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</guid>
+      <link>https://suama.github.io/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 07 Aug 2025 20:12:52 +0800</pubDate>
+      <guid>https://suama.github.io/categories/%E4%BB%A3%E7%A0%81%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     <item>
       <title>Rolling</title>
-      <link>http://localhost:1313/categories/rolling/</link>
+      <link>https://suama.github.io/categories/rolling/</link>
       <pubDate>Wed, 30 Jul 2025 10:40:52 +0800</pubDate>
-      <guid>http://localhost:1313/categories/rolling/</guid>
+      <guid>https://suama.github.io/categories/rolling/</guid>
       <description></description>
     </item>
     <item>
       <title>学习随笔</title>
-      <link>http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/</link>
+      <link>https://suama.github.io/categories/%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/</link>
       <pubDate>Sun, 27 Apr 2025 20:41:52 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/</guid>
+      <guid>https://suama.github.io/categories/%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/</guid>
       <description></description>
     </item>
     <item>
       <title>琐碎简记</title>
-      <link>http://localhost:1313/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</link>
-      <pubDate>Sun, 27 Apr 2025 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1313/categories/test/</link>
-      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/categories/test/</guid>
+      <link>https://suama.github.io/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</link>
+      <pubDate>Sat, 26 Apr 2025 07:07:52 +0800</pubDate>
+      <guid>https://suama.github.io/categories/%E7%90%90%E7%A2%8E%E7%AE%80%E8%AE%B0/</guid>
       <description></description>
     </item>
   </channel>
