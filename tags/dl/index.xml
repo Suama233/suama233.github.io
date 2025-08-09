@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dl on きこえるの？</title>
+    <link>https://suama.github.io/tags/dl/</link>
+    <description>Recent content in Dl on きこえるの？</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 09 Aug 2025 08:12:52 +0800</lastBuildDate>
+    <atom:link href="https://suama.github.io/tags/dl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[琐碎简记]Xavier初始化内容与原理</title>
+      <link>https://suama.github.io/post/xavier_init/</link>
+      <pubDate>Sat, 09 Aug 2025 08:12:52 +0800</pubDate>
+      <guid>https://suama.github.io/post/xavier_init/</guid>
+      <description>&lt;h3 id=&#34;为什么需要设计初始化&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e8%ae%be%e8%ae%a1%e5%88%9d%e5%a7%8b%e5%8c%96&#34;&gt;&lt;/a&gt;&#xD;&#xA;为什么需要设计初始化&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;首先要接受一个事实：初始化方法会影响训练效果&lt;/strong&gt;&#xA;（其实有人初见会觉得奇怪，但比较显然：如不动点的捕捉，空间其他点的生成位置显然会决定其后来在步进中逐渐跌向的不动点是哪个）&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

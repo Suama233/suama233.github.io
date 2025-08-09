@@ -22,11 +22,11 @@
   
 
 <title>
-  [代码笔记]d2l 4 | すあま
+  [琐碎简记]Xavier初始化内容与原理 | すあま
 </title>
 <meta
   name="description"
-  content="第四章一些新的注意点"
+  content="其出现原因\其推导与一些数学"
 />
 
 
@@ -317,7 +317,7 @@
 <header id="header">
   
     <picture></picture>
-    <img  fetchpriority="high" src="/covers/kakkoii/cover1.jpg" alt="[代码笔记]d2l 4">
+    <img  fetchpriority="high" src="/covers/kakkoii/cover1.jpg" alt="[琐碎简记]Xavier初始化内容与原理">
   
 
   <div id="header-outer">
@@ -330,7 +330,7 @@
   
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">[代码笔记]d2l 4</h1>
+            <h1 data-aos="slide-up">[琐碎简记]Xavier初始化内容与原理</h1>
           </a>
         
       
@@ -367,10 +367,10 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#简述">简述</a></li>
-        <li><a href="#简单理解detach">简单理解<code>.detach()</code></a></li>
-        <li><a href="#区分torchrelux与torchnnfunctionalrelux">区分<code>torch.relu(x)</code>与<code>torch.nn.functional.relu(x)</code></a></li>
-        <li><a href="#xavier初始化">Xavier初始化</a></li>
+        <li><a href="#为什么需要设计初始化">为什么需要设计初始化</a></li>
+        <li><a href="#xavier初始化的思路">Xavier初始化的思路</a></li>
+        <li><a href="#xavier初始化的推导">Xavier初始化的推导</a></li>
+        <li><a href="#回顾与延展">回顾与延展</a></li>
       </ul>
     </li>
   </ul>
@@ -538,11 +538,11 @@
     class="article-date-link"
     data-aos="zoom-in"
   >
-    <time datetime="2025-08-05 20:12:52 &#43;0800 CST" itemprop="datePublished"
-      >2025-08-05</time
+    <time datetime="2025-08-09 08:12:52 &#43;0800 CST" itemprop="datePublished"
+      >2025-08-09</time
     >
     <time style="display: none;" id="post-update-time"
-      >2025-08-05</time
+      >2025-08-09</time
     >
   </span>
 </div>
@@ -551,9 +551,9 @@
   
     <a
       class="article-category-link"
-      href="/categories/%e4%bb%a3%e7%a0%81%e7%ac%94%e8%ae%b0"
+      href="/categories/%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0"
       data-aos="zoom-in"
-      >代码笔记</a
+      >琐碎简记</a
     >
   
 </div>
@@ -564,40 +564,41 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h3 id="简述">
-<a class="header-anchor" href="#%e7%ae%80%e8%bf%b0"></a>
-简述
-</h3><p>涉及到一些基本操作与基本世界观的补充搭建，以及一些数学的再理解</p>
-<h3 id="简单理解detach">
-<a class="header-anchor" href="#%e7%ae%80%e5%8d%95%e7%90%86%e8%a7%a3detach"></a>
-简单理解<code>.detach()</code>
-</h3><ul>
-<li>
-<p>它会返回一个新张量，且该张量脱离于原张量附属的计算图而存在，不参与梯度计算</p>
-</li>
-<li>
-<p>该张量与原张量共享存储空间，意味着in-place modifications对二者是同步的</p>
-</li>
-<li>
-<p>可以用来如数据呈现、记录等</p>
-</li>
-</ul>
-<p>例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">d2l</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span><span class="n">y</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;relu(x)&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">))</span>
-</span></span></code></pre></div><h3 id="区分torchrelux与torchnnfunctionalrelux">
-<a class="header-anchor" href="#%e5%8c%ba%e5%88%86torchrelux%e4%b8%8etorchnnfunctionalrelux"></a>
-区分<code>torch.relu(x)</code>与<code>torch.nn.functional.relu(x)</code>
-</h3><ul>
-<li>其实没什么区别，更像是通过更改名字来区分与统一应用场景，二者最终指向的c代码也是同一部分</li>
-<li>其实还有<code>torch.nn.ReLU</code>等，其更多是作为层对象存在的</li>
-<li>可以理解为：torch不但可以构建网络，其本身也提供了大量的基础工具，而恰好两个功能中有工具一样</li>
-</ul>
-<h3 id="xavier初始化">
-<a class="header-anchor" href="#xavier%e5%88%9d%e5%a7%8b%e5%8c%96"></a>
-Xavier初始化
-</h3><p>会将来单独写一篇</p>
+        <h3 id="为什么需要设计初始化">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e8%ae%be%e8%ae%a1%e5%88%9d%e5%a7%8b%e5%8c%96"></a>
+为什么需要设计初始化
+</h3><p><strong>首先要接受一个事实：初始化方法会影响训练效果</strong>
+（其实有人初见会觉得奇怪，但比较显然：如不动点的捕捉，空间其他点的生成位置显然会决定其后来在步进中逐渐跌向的不动点是哪个）</p>
+<p>梯度消失与爆炸是显然需要解决的问题，而其的一大表现方式是参数方差的不稳定。一般一系列同类层采用同种的初始化方式，若这种方式使每层的变量（而非参数）方差（暂记$\sigma^2$）</p>
+<p>如果$\sigma^2$在传播后变大，则其在传递过程中方差会越来越大，表现为有些数极大（爆炸），有些数极小（消失）（但貌似爆炸的可能更大些？）</p>
+<p>但如果将$\sigma^2$变小，其又会在层间传递中逐渐消失，而梯度与$\sigma^2$是会逐渐出现一定的正相关关系的，也就是会出现梯度消失的情况。</p>
+<h3 id="xavier初始化的思路">
+<a class="header-anchor" href="#xavier%e5%88%9d%e5%a7%8b%e5%8c%96%e7%9a%84%e6%80%9d%e8%b7%af"></a>
+Xavier初始化的思路
+</h3><p>那么一种理想的初始化方式就有了：使得传入、传出后变量方差相等</p>
+<p>而且还要注意，反向传播广义上与正向计算是对称的，也就是还要尽量保证反向传播时传入传出（与正向传播的传入传出相反）的变量方差都是相等的</p>
+<p>Xavier的大概设想即是这样。但考虑到各种层的自定义情况以及其当时采用的层构建与现在有些差别。<strong>但即使是接近这种构想也能带来显著的效果提升</strong>，所以使用它不一定需要背景与原教旨Xavier应用背景完全一样
+（P.S.:比较大区别的是激活函数的使用，当时还在主用sigmoid，这使得梯度消失问题非常严重（sigmoid在x值很小时是近似为纯粹的线性函数的），而且sigmoid的对称性也会影响后面的一部分计算内容）</p>
+<h3 id="xavier初始化的推导">
+<a class="header-anchor" href="#xavier%e5%88%9d%e5%a7%8b%e5%8c%96%e7%9a%84%e6%8e%a8%e5%af%bc"></a>
+Xavier初始化的推导
+</h3><p>首先进行符号定义，对于一个全连接层：
+$n_{in}$：输入维度
+$n_{out}$：输出维度
+$W$：大小为$n_{in}\times n_{out}$的权重矩阵
+（显然偏置项、均值均与方差无关，这里直接设置为0不讨论，也即：$\vec{b}=\vec{0},\mathbb{E}[x_i] = \mathbb{E}[W_{ij}] = 0$）
+而W,x中的每个元素应该是i.i.d的</p>
+<p>整个推导可以分为两个部分，分别控制正向传播与反向传播</p>
+$$y_j = \sum_{i=1}^{n_{in}}{W_{ij}x_i}$$$$Var[y_j]=Var[\sum_{i=1}^{n_{in}}{W_{ij}x_i}]=\sum_{i=1}^{n_{in}}{Var[W_{ij}x_i]}$$$$Var[W_{ij}x_i] = \mathbb{E}[W^2_{ij}x^2_i]-(\mathbb{E}[W_{ij}x_i])^2$$$$\mathbb{E}[W_{ij}x_i] = \mathbb{E}[W_{ij}]\mathbb{E}[x_i] = 0$$$$Var[x_i] = \mathbb{E}[x^2_i]-(\mathbb{E}[x_i])^2 = \mathbb{E}[x^2_i] \space\space ，W_{ij}同理$$$$Var[W_{ij}x_i] = Var[W_{ij}]Var[x_i]$$$$Var[y_j] = n_{in}Var[W_{ij}]Var[x_i]$$<p>
+如果想控制方差不变，则需要$Var[y_j] = Var[x_i]$，得到$Var[W_{ij}] = \frac{1}{n_{in}}$</p>
+$$\frac{\partial L}{\partial x_i}  =  \sum_{j=1}^{n_{out}} \frac{\partial L}{\partial y_j}\frac{\partial y_j}{\partial x_i} =\sum_{j=1}^{n_{out}} \frac{\partial L}{\partial y_j} W_{ij} $$$$Var[\frac{\partial L}{\partial x_i}]=Var[\sum_{j=1}^{n_{out}} \frac{\partial L}{\partial y_j} W_{ij}] $$<p>而$\frac{\partial L}{\partial y_j}$与$W_{ij}$是独立的, <em>在sigmoid函数中</em> 有$\mathbb{E}[\frac{\partial L}{\partial y_j}]=0$,</p>
+<p>这样一来就与正向传播完全对称了,同样步骤得到$Var[W_{ij}] = \frac{1}{n_{out}}$</p>
+<p><strong>进一步处理:</strong></p>
+$$Var[W_{ij}] = \frac{2}{n_{in}+n_{out}}$$$$W_{ij} \sim \text{Uniform}\left (-\sqrt{\frac{6}{n_{in}+n_{out}}},\sqrt{\frac{6}{n_{in}+n_{out}}}\right)$$$$W_{ij} \sim \mathcal{N}\left (0,\sqrt{\frac{2}{n_{in}+n_{out}}}\right )$$<h3 id="回顾与延展">
+<a class="header-anchor" href="#%e5%9b%9e%e9%a1%be%e4%b8%8e%e5%bb%b6%e5%b1%95"></a>
+回顾与延展
+</h3><p>可以看到在反向传播中有借助sigmoid函数对称性获得信息的操作,而这种信息在使用ReLU等激活函数时并不成立,但这并不影响其的确能提升效果的事实,不过是没完全符合时提升得多而已.
+为了修正与进一步提升效率,还有He初始化等等,这里就先不提了</p>
 
       
     </div>
@@ -611,19 +612,19 @@ Xavier初始化
 
 <div class="share-wrapper">
   
-    <a href="https://twitter.com/intent/tweet?url=https://suama.github.io/post/d2l_4/&amp;text=[%e4%bb%a3%e7%a0%81%e7%ac%94%e8%ae%b0]d2l%204&amp;via=https://suama.github.io/" target="_blank" rel="noopener noreferrer" title="[代码笔记]d2l 4">
+    <a href="https://twitter.com/intent/tweet?url=https://suama.github.io/post/xavier_init/&amp;text=[%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0]Xavier%e5%88%9d%e5%a7%8b%e5%8c%96%e5%86%85%e5%ae%b9%e4%b8%8e%e5%8e%9f%e7%90%86&amp;via=https://suama.github.io/" target="_blank" rel="noopener noreferrer" title="[琐碎简记]Xavier初始化内容与原理">
       <div class="share-icon icon icon-twitter">
         
       </div>
     </a>
   
-    <a href="http://connect.qq.com/widget/shareqq/index.html?url=https://suama.github.io/post/d2l_4/&amp;title=[%e4%bb%a3%e7%a0%81%e7%ac%94%e8%ae%b0]d2l%204&amp;desc=%e7%ac%ac%e5%9b%9b%e7%ab%a0%e4%b8%80%e4%ba%9b%e6%96%b0%e7%9a%84%e6%b3%a8%e6%84%8f%e7%82%b9&amp;source=https://suama.github.io/" target="_blank" rel="noopener noreferrer" title="[代码笔记]d2l 4">
+    <a href="http://connect.qq.com/widget/shareqq/index.html?url=https://suama.github.io/post/xavier_init/&amp;title=[%e7%90%90%e7%a2%8e%e7%ae%80%e8%ae%b0]Xavier%e5%88%9d%e5%a7%8b%e5%8c%96%e5%86%85%e5%ae%b9%e4%b8%8e%e5%8e%9f%e7%90%86&amp;desc=%e5%85%b6%e5%87%ba%e7%8e%b0%e5%8e%9f%e5%9b%a0%5c%e5%85%b6%e6%8e%a8%e5%af%bc%e4%b8%8e%e4%b8%80%e4%ba%9b%e6%95%b0%e5%ad%a6&amp;source=https://suama.github.io/" target="_blank" rel="noopener noreferrer" title="[琐碎简记]Xavier初始化内容与原理">
       <div class="share-icon icon icon-qq">
         
       </div>
     </a>
   
-    <a href="javascript:;"  title="[代码笔记]d2l 4">
+    <a href="javascript:;"  title="[琐碎简记]Xavier初始化内容与原理">
       <div class="share-icon icon icon-weixin">
         
           <div id="share-weixin">
@@ -655,12 +656,12 @@ Xavier初始化
       
         <a
           data-aos="zoom-in"
-          href="/post/d2l_4/#comments"
+          href="/post/xavier_init/#comments"
           class="article-comment-link"
         >
           <span
             class="post-comments-count waline-comment-count"
-            data-path="https//suama.github.io/post/d2l_4/"
+            data-path="https//suama.github.io/post/xavier_init/"
             itemprop="commentCount"
           ></span>
           留言
@@ -678,7 +679,7 @@ Xavier初始化
         >
           <span
             class="waline-pageview-count"
-            data-path="/post/d2l_4/"
+            data-path="/post/xavier_init/"
             >0</span
           >
           <em class="post-meta-item-text">阅读量</em>
@@ -689,9 +690,18 @@ Xavier初始化
     <li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
-        href="/tags/d2l"
+        href="/tags/math"
         rel="tag"
-        >D2L</a
+        >MATH</a
+      >
+    </li>
+  
+    <li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/dl"
+        rel="tag"
+        >DL</a
       >
     </li>
   
@@ -711,38 +721,20 @@ Xavier初始化
           <img
             data-src="/covers/kakkoii/cover1.jpg"
             data-sizes="auto"
-            alt="[代码笔记]d2l 3.5-3.7"
+            alt="[代码笔记]d2l 6.1"
             class="lazyload"
           />
         
-        <a href="/post/d2l_3_57/"></a>
+        <a href="/post/d2l_6_1/"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
           
-            [代码笔记]d2l 3.5-3.7
+            [代码笔记]d2l 6.1
           
         </h3>
       </div>
     
 
-    
-      <div class="article-nav-link-wrap article-nav-link-right">
-        
-          <img
-            data-src="/covers/kakkoii/cover1.jpg"
-            data-sizes="auto"
-            alt="[代码笔记]d2l 5"
-            class="lazyload"
-          />
-        
-        <a href="/post/d2l_5/"></a>
-        <div class="article-nav-caption">后一篇</div>
-        <h3 class="article-nav-title">
-          
-            [代码笔记]d2l 5
-          
-        </h3>
-      </div>
     
   </nav>
 
@@ -933,10 +925,10 @@ Xavier初始化
   <ul>
     <li>
       <ul>
-        <li><a href="#简述">简述</a></li>
-        <li><a href="#简单理解detach">简单理解<code>.detach()</code></a></li>
-        <li><a href="#区分torchrelux与torchnnfunctionalrelux">区分<code>torch.relu(x)</code>与<code>torch.nn.functional.relu(x)</code></a></li>
-        <li><a href="#xavier初始化">Xavier初始化</a></li>
+        <li><a href="#为什么需要设计初始化">为什么需要设计初始化</a></li>
+        <li><a href="#xavier初始化的思路">Xavier初始化的思路</a></li>
+        <li><a href="#xavier初始化的推导">Xavier初始化的推导</a></li>
+        <li><a href="#回顾与延展">回顾与延展</a></li>
       </ul>
     </li>
   </ul>
@@ -1238,9 +1230,9 @@ Xavier初始化
       <script data-pjax>
         window.REIMU_POST = {
           author: "すあま",
-          title: "[代码笔记]d2l 4",
-          url: "https:\/\/suama.github.io\/post\/d2l_4\/",
-          description: "第四章一些新的注意点",
+          title: "[琐碎简记]Xavier初始化内容与原理",
+          url: "https:\/\/suama.github.io\/post\/xavier_init\/",
+          description: "其出现原因\\其推导与一些数学",
           cover: "https:\/\/suama.github.io\/covers\/kakkoii\/cover1.jpg",
         };
       </script>

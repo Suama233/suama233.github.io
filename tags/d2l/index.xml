@@ -6,8 +6,15 @@
     <description>Recent content in D2l on きこえるの？</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 07 Aug 2025 20:12:52 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Aug 2025 20:12:52 +0800</lastBuildDate>
     <atom:link href="https://suama.github.io/tags/d2l/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[代码笔记]d2l 6.1</title>
+      <link>https://suama.github.io/post/d2l_6_1/</link>
+      <pubDate>Fri, 08 Aug 2025 20:12:52 +0800</pubDate>
+      <guid>https://suama.github.io/post/d2l_6_1/</guid>
+      <description>&lt;h3 id=&#34;从视觉出发的卷积可参与问题的基本特点&#34;&gt;&#xD;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e4%bb%8e%e8%a7%86%e8%a7%89%e5%87%ba%e5%8f%91%e7%9a%84%e5%8d%b7%e7%a7%af%e5%8f%af%e5%8f%82%e4%b8%8e%e9%97%ae%e9%a2%98%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%89%b9%e7%82%b9&#34;&gt;&lt;/a&gt;&#xD;&#xA;从视觉出发的卷积可参与问题的基本特点：&#xD;&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;平移不变性：目标对象（如“猫”）的被提取器的提取反应与提取器本身不与其在图像等媒介中的位置相干&lt;/li&gt;&#xA;&lt;li&gt;局部性：其特征提取聚焦于局部区域而非某几个相距很远的区域&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>[代码笔记]d2l 5</title>
       <link>https://suama.github.io/post/d2l_5/</link>
